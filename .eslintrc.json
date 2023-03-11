@@ -35,6 +35,10 @@
           "error",
           2,
           { "ObjectExpression": "first" }
+        ],
+        "quotes": [
+          "error",
+          "single"
         ]
       }
     },
