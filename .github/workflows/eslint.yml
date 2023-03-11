@@ -20,4 +20,4 @@ jobs:
       - name: Run linters and prettier fix
         run: npm run lint
       - name: Run Test
-        run: npm run test
+        run: npm run test:ci
