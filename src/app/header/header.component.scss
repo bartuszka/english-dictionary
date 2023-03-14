@@ -1,0 +1,10 @@
+@import '../../variables';
+
+header {
+  height: 70px;
+  line-height: 70px;
+  padding-left: $left-space-box;
+  width: 100%;
+  background-image: linear-gradient(to right, $medium-blue, $light-blue);
+  color: $white-text;
+}
