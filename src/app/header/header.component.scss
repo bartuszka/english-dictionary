@@ -1,0 +1,17 @@
+@import '../../variables';
+
+:host {
+  display: block;
+}
+
+header {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(to right, $medium-blue, $light-blue);
+  color: $white-text;
+
+  h1 {
+    text-align: center;
+  }
+}

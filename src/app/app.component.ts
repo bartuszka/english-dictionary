@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'english-dictionary';
+  public headerHeight: number = 70;
+  public sideMenuWidth: number = 270;
+  public isSideMenuHidden = false;
 }

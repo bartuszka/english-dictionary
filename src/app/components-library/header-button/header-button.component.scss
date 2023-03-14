@@ -1,0 +1,19 @@
+@import '../library-styles';
+@import '../../../variables';
+
+button {
+  @include clean-button;
+
+  font-size: $h2-font-size;
+  color: $dark-blue;
+  margin-right: 1px;
+  width: 200px;
+  height: 100%;
+  background-color: $medium-violet;
+  transition: color ease-out .5s;
+}
+
+button:hover {
+  background-color: $dark-violet;
+  color: $white-text;
+}

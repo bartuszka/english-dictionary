@@ -1,0 +1,35 @@
+:host {
+  display: block;
+  margin-left: 0;
+  transition: margin-left ease-out .2s;
+
+  section {
+    position: relative;
+    width: 270px;
+    background-color: #888fbd;
+    height: 50px;
+
+    app-circle-button {
+      display: block;
+      float: right;
+      margin: 10px;
+      transform: rotate(180deg);
+      transition: transform 1s ease-out;
+    }
+
+    div.test {
+      margin: 10px;
+    }
+  }
+
+  &.hidden {
+    margin-left: -270px;
+
+    section {
+      app-circle-button {
+        margin-right: -40px;
+        transform: rotate(0);
+      }
+    }
+  }
+}
