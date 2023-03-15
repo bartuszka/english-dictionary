@@ -1,19 +1,25 @@
 @import '../library-styles';
 @import '../../../variables';
 
-button {
+a {
   @include clean-button;
 
+  display: block;
+  text-align: center;
   font-size: $h2-font-size;
   color: $dark-blue;
   margin-right: 1px;
   width: 200px;
   height: 100%;
   background-color: $medium-violet;
-  transition: color ease-out .5s;
-}
+  transition: background-color ease-out .5s;
 
-button:hover {
-  background-color: $dark-violet;
-  color: $white-text;
+  &.active {
+    background-color: $white-text;
+  }
+
+  &:hover {
+    background-color: $dark-violet;
+    color: $white-text;
+  }
 }

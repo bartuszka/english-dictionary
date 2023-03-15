@@ -1,7 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'search-results',
+    loadChildren: () => import('./search-results/search-results.module').then(m => m.SearchResultsModule)
+  },
+  {
+    path: 'add-word',
+    loadChildren: () => import('./add-word/add-word.module').then(m => m.AddWordModule)
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

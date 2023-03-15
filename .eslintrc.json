@@ -6,7 +6,7 @@
   "overrides": [
     {
       "files": [
-        "*.ts"
+        "*.ts", "*.js"
       ],
       "extends": [
         "eslint:recommended",
