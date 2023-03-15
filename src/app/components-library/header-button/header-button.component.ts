@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderButtonComponent {
   @Input() public message: string;
+  @Input() public pageUrl: string;
 }
