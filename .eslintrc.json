@@ -31,10 +31,15 @@
             "style": "kebab-case"
           }
         ],
+        "@typescript-eslint/no-inferrable-types": "off",
         "indent": [
           "error",
           2,
           { "ObjectExpression": "first" }
+        ],
+        "object-curly-spacing": [
+          "error",
+          "always"
         ],
         "quotes": [
           "error",

@@ -1,1 +1,11 @@
-<app-header></app-header>
+<app-header [ngStyle]="{ height: headerHeight + 'px',
+                         lineHeight: headerHeight + 'px' }"
+            [sideMenuWidth]="sideMenuWidth">
+</app-header>
+
+<app-side-menu [ngClass]="{ hidden: isSideMenuHidden }"
+               [headerHeight]="headerHeight"
+               (sideMenuToggled)="isSideMenuHidden = !isSideMenuHidden">
+</app-side-menu>
+
+<section>Body of the dictionary</section>
