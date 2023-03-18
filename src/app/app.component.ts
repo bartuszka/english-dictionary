@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public headerHeight: number = 70;
   public sideMenuWidth: number = 270;
-  public isSideMenuVisible = false;
+  public isSideMenuVisible = true;
 }

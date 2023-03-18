@@ -26,11 +26,16 @@ export class SideMenuDirective implements AfterViewInit {
 
   public ngAfterViewInit() {
     this.setDimensions(window.innerWidth);
-    this.setLeftPosition(this._isVisible);
   }
 
   private setDimensions(windowWidth: number) {
-    this.isMobile = !(windowWidth > 768);
+    const isMobile = !(windowWidth > 768);
+
+    if (isMobile === this.isMobile) {
+      return;
+    }
+
+    this.isMobile = isMobile;
 
     this.renderer.setStyle(this.elementRef.nativeElement, 'height',
       !this.isMobile ? window.innerHeight - this.headerHeight + 'px' : 'auto');
