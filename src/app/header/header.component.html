@@ -1,5 +1,14 @@
 <header>
   <h1 id="logo" [ngStyle]="{ width: sideMenuWidth + 'px' }">Bart's Dictionary</h1>
-  <app-header-button message="Search" pageUrl="./search-results"></app-header-button>
-  <app-header-button message="Add a word" pageUrl="./add-word"></app-header-button>
+
+  <nav>
+    <ul>
+      <li>
+        <app-header-button message="Search" pageUrl="./search-results"></app-header-button>
+      </li>
+      <li>
+        <app-header-button message="Add a word" pageUrl="./add-word"></app-header-button>
+      </li>
+    </ul>
+  </nav>
 </header>

@@ -4,11 +4,23 @@ const express = require('express');
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X_Request-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+  next();
+})
+
 const words = [
   {
     type: 'VERB',
+    verbTypes: ['TRANSITIVE', 'INTRANSITIVE'],
     name: 'exceed',
     spelling: 'ɪkˈsiːd',
+    secondForm: 'exceeded',
+    secondFormSpelling: 'ɪkˈsiːdid',
+    thirdForm: 'exceeded',
+    thirdFormSpelling: 'ɪkˈsiːdid',
     translations: [
       {
         contextWordType: 'TRANSITIVE',
@@ -26,8 +38,11 @@ const words = [
   },
   {
     type: 'NOUN',
+    nounTypes: ['COUNTABLE', 'UNCOUNTABLE'],
     name: 'ambition',
     spelling: 'æmˈbɪʃən',
+    pluralForm: 'ambitions',
+    pluralFormSpelling: 'æmˈbɪʃənz',
     translations: [
       {
         contextWordType: 'COUNTABLE',

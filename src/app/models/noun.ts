@@ -3,4 +3,6 @@ import { Word } from './word';
 
 export interface Noun extends Word {
   nounTypes: NounType[],
+  pluralForm: string,
+  pluralFormSpelling: string
 }
