@@ -1,4 +1,7 @@
 @import '../../variables';
+@import '../../breakpoints';
+
+$header-line-height: 70px;
 
 :host {
   display: block;
@@ -6,12 +9,35 @@
 
 header {
   display: flex;
-  height: 100%;
   width: 100%;
-  background-image: linear-gradient(to right, $medium-blue, $light-blue);
   color: $white-text;
+  background-image: linear-gradient(to right, $medium-blue, $light-blue);
 
   h1 {
+    min-width: 270px;
+    line-height: $header-line-height;
     text-align: center;
+  }
+
+  li {
+    display: inline-block;
+    height: $header-line-height;
+    line-height: $header-line-height;
+
+    @include breakpoint-mobile {
+      width: 50%;
+    }
+
+    app-header-button {
+      width: 200px;
+
+      @include breakpoint-mobile {
+        width: 100%;
+      }
+    }
+  }
+
+  @include breakpoint-mobile {
+    display: block;
   }
 }

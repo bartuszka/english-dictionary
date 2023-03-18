@@ -1,11 +1,13 @@
-<app-header [ngStyle]="{ height: headerHeight + 'px',
-                         lineHeight: headerHeight + 'px' }"
-            [sideMenuWidth]="sideMenuWidth">
-</app-header>
+<app-header></app-header>
 
-<app-side-menu [ngClass]="{ hidden: isSideMenuHidden }"
-               [headerHeight]="headerHeight"
-               (sideMenuToggled)="isSideMenuHidden = !isSideMenuHidden">
-</app-side-menu>
+<div id="container">
+  <app-side-menu [sideMenuWidth]="sideMenuWidth"
+                 [isVisible]="isSideMenuVisible"
+                 [headerHeight]="headerHeight"
+                 (sideMenuToggled)="isSideMenuVisible = !isSideMenuVisible">
+  </app-side-menu>
 
-<router-outlet></router-outlet>
+  <div id="content-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

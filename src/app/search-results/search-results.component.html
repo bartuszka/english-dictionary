@@ -1,1 +1,53 @@
-<p>search-results works!</p>
+<section id="search-results-container">
+  <ul>
+    <li *ngFor="let word of (words$ | async)">
+      <div class="title">
+        <div>
+          <h1>{{ word.name }}</h1>
+          <span>/{{ word.spelling }}/</span>
+
+          <span *ngIf="getWordAsVerb(word) as word">
+            <span *ngIf="word.verbTypes as verbTypes">
+              <span>({{ verbTypes | wordType }})</span>
+            </span>
+
+            <span *ngIf="word.secondForm">
+              <span>[{{ word.secondForm }}</span>
+              <span>/{{ word.secondFormSpelling }}/</span>
+            </span>
+
+            <span *ngIf="word.thirdForm">
+              <span>| {{ word.thirdForm }}</span>
+              <span>/{{ word.thirdFormSpelling }}/]</span>
+            </span>
+          </span>
+
+          <span *ngIf="getWordAsNoun(word) as word">
+            <span *ngIf="word.nounTypes as nounTypes">
+              <span>({{ nounTypes | wordType }})</span>
+            </span>
+            <span *ngIf="word.pluralForm">[{{ word.pluralForm }}</span>
+            <span *ngIf="word.pluralFormSpelling">/{{ word.pluralFormSpelling }}/]</span>
+          </span>
+        </div>
+
+        <div>{{ word.type }}</div>
+      </div>
+
+      <div class="body">
+        <div class="translation" *ngFor="let translation of word.translations">
+          <div>
+            <strong>{{ translation.contextWordType | wordType }}: {{ translation.useCase }}</strong>
+            <span>{{ translation.context }}</span>
+            <strong>= {{ translation.translation }}</strong>
+          </div>
+          <div *ngIf="translation.synonyms" class="synonyms">
+            <strong>Synonyms</strong>
+            <br />
+            <span *ngFor="let synonym of translation.synonyms">{{ synonym }}</span>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>

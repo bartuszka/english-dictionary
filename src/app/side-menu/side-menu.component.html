@@ -1,3 +1,6 @@
-<section appSideMenu [headerHeight]="headerHeight">
+<section appSideMenu
+         [headerHeight]="headerHeight"
+         [isVisible]="isVisible"
+         [sideMenuWidth]="sideMenuWidth">
   <app-circle-button (click)="emitSideMenuToggled()"></app-circle-button>
 </section>

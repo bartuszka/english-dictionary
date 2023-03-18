@@ -1,25 +1,29 @@
 @import '../library-styles';
 @import '../../../variables';
 
-a {
-  @include clean-button;
+:host {
+  width: inherit;
 
-  display: block;
-  text-align: center;
-  font-size: $h2-font-size;
-  color: $dark-blue;
-  margin-right: 1px;
-  width: 200px;
-  height: 100%;
-  background-color: $medium-violet;
-  transition: background-color ease-out .5s;
+  a {
+    @include clean-button;
 
-  &.active {
-    background-color: $white-text;
-  }
+    width: inherit;
+    display: block;
+    text-align: center;
+    font-size: $h2-font-size;
+    color: $dark-blue;
+    margin-right: 1px;
+    height: 100%;
+    background-color: $medium-violet;
+    transition: background-color ease-out .5s;
 
-  &:hover {
-    background-color: $dark-violet;
-    color: $white-text;
+    &.active {
+      background-color: $white-text;
+    }
+
+    &:hover {
+      background-color: $dark-violet;
+      color: $white-text;
+    }
   }
 }
