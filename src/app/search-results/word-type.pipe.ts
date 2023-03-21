@@ -16,3 +16,4 @@ export class WordTypePipe implements PipeTransform {
     }
   }
 }
+

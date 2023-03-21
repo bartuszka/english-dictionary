@@ -1,9 +1,12 @@
 import { TranslationExample } from './translation-example';
-import { WordType } from './word-type';
+import { Verb } from './verb';
+import { Noun } from './noun';
+import { OtherWord } from './other-word';
 
-export interface Word {
-  type: WordType,
+export interface GeneralWord {
   name: string,
   spelling: string,
   translations: TranslationExample[]
 }
+
+export type Word = Verb | Noun | OtherWord;

@@ -6,32 +6,32 @@
           <h1>{{ word.name }}</h1>
           <span>/{{ word.spelling }}/</span>
 
-          <span *ngIf="getWordAsVerb(word) as word">
-            <span *ngIf="word.verbTypes as verbTypes">
+          <span *ngIf="word | verbType as verb">
+            <span *ngIf="verb.verbTypes as verbTypes">
               <span>({{ verbTypes | wordType }})</span>
             </span>
 
-            <span *ngIf="word.secondForm">
-              <span>[{{ word.secondForm }}</span>
-              <span>/{{ word.secondFormSpelling }}/</span>
+            <span *ngIf="verb.secondForm">
+              <span>[{{ verb.secondForm }}</span>
+              <span>/{{ verb.secondFormSpelling }}/</span>
             </span>
 
-            <span *ngIf="word.thirdForm">
-              <span>| {{ word.thirdForm }}</span>
-              <span>/{{ word.thirdFormSpelling }}/]</span>
+            <span *ngIf="verb.thirdForm">
+              <span>| {{ verb.thirdForm }}</span>
+              <span>/{{ verb.thirdFormSpelling }}/]</span>
             </span>
           </span>
 
-          <span *ngIf="getWordAsNoun(word) as word">
-            <span *ngIf="word.nounTypes as nounTypes">
+          <span *ngIf="word | nounType as noun">
+            <span *ngIf="noun.nounTypes as nounTypes">
               <span>({{ nounTypes | wordType }})</span>
             </span>
-            <span *ngIf="word.pluralForm">[{{ word.pluralForm }}</span>
-            <span *ngIf="word.pluralFormSpelling">/{{ word.pluralFormSpelling }}/]</span>
+            <span *ngIf="noun.pluralForm">[{{ noun.pluralForm }}</span>
+            <span *ngIf="noun.pluralFormSpelling">/{{ noun.pluralFormSpelling }}/]</span>
           </span>
         </div>
 
-        <div>{{ word.type }}</div>
+        <div>{{ word.wordType }}</div>
       </div>
 
       <div class="body">

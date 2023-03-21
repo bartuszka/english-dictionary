@@ -19,12 +19,4 @@ export class SearchResultsComponent implements OnInit {
   public ngOnInit(): void {
     this.words$ = this.searchResultsService.words$;
   }
-
-  public getWordAsVerb(word: Word): Verb {
-    return word as Verb;
-  }
-
-  public getWordAsNoun(word: Word): Noun {
-    return word as Noun;
-  }
 }

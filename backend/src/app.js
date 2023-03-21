@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 
 const words = [
   {
-    type: 'VERB',
+    wordType: 'VERB',
     verbTypes: ['TRANSITIVE', 'INTRANSITIVE'],
     name: 'exceed',
     spelling: 'ɪkˈsiːd',
@@ -37,7 +37,7 @@ const words = [
     ]
   },
   {
-    type: 'NOUN',
+    wordType: 'NOUN',
     nounTypes: ['COUNTABLE', 'UNCOUNTABLE'],
     name: 'ambition',
     spelling: 'æmˈbɪʃən',
