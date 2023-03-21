@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 
 import { WordsState } from '../models/words-state';
 import { Word } from '../models/word';
+import { addManualErrorHandlingParam } from '../functions/add-manual-error-handling-param';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class SearchResultsService {
   }
 
   public fetchWords(): Observable<Word[]> {
-    return this.httpClient.get<Word[]>('http://localhost:3000/api/words').pipe(
+    return this.httpClient.get<Word[]>('words', { params: addManualErrorHandlingParam() }).pipe(
       tap((words: Word[]) => this.store.dispatch(new WordsActions.AddWords(words)))
     );
   }

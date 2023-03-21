@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 
@@ -12,6 +12,7 @@ import { SideMenuDirective } from './side-menu/side-menu.directive';
 import { CircleButtonComponent } from './components-library/circle-button/circle-button.component';
 import { HeaderButtonComponent } from './components-library/header-button/header-button.component';
 import { reducers } from './app-state';
+import { HttpInterceptorService } from './http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { reducers } from './app-state';
     HttpClientModule,
     StoreModule.forRoot(reducers),
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
