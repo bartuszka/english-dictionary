@@ -1,0 +1,10 @@
+<app-general-error-template [title]="title"
+                            (closed)="close()">
+  <div body>
+    <p id="error-description">
+      <span class="material-symbols-outlined">error</span>
+      <span>We are sorry. A server error has occurred. Please wait until the page is fixed.</span>
+    </p>
+    <p id="error-message">{{ error.message }}</p>
+  </div>
+</app-general-error-template>

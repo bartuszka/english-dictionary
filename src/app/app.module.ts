@@ -13,6 +13,7 @@ import { CircleButtonComponent } from './components-library/circle-button/circle
 import { HeaderButtonComponent } from './components-library/header-button/header-button.component';
 import { reducers } from './app-state';
 import { HttpInterceptorService } from './http-interceptor.service';
+import { ErrorModule } from './error/error.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HttpInterceptorService } from './http-interceptor.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ErrorModule,
     StoreModule.forRoot(reducers),
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }],

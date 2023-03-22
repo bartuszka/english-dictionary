@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as WordsActions from '../search-results/search-results-store/words.actions';
 
 import { map, Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
+import * as WordsActions from '../search-results/search-results-store/words.actions';
 import { WordsState } from '../models/words-state';
 import { Word } from '../models/word';
 import { addManualErrorHandlingParam } from '../functions/add-manual-error-handling-param';
@@ -15,7 +15,10 @@ import { addManualErrorHandlingParam } from '../functions/add-manual-error-handl
 export class SearchResultsService {
   public words$: Observable<Word[]>;
 
-  constructor(public httpClient: HttpClient, private store: Store<{ wordsState: WordsState }>) {
+  constructor(
+    public httpClient: HttpClient,
+    private store: Store<{ wordsState: WordsState }>,
+  ) {
     this.setWordsStream();
   }
 

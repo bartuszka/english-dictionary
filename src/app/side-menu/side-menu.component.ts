@@ -1,8 +1,6 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
 } from '@angular/core';
 
 @Component({
@@ -12,11 +10,10 @@ import {
 })
 export class SideMenuComponent {
   @Input() public headerHeight: number;
-  @Input() public isVisible: boolean;
   @Input() public sideMenuWidth: number = 270;
-  @Output() public sideMenuToggled: EventEmitter<void> = new EventEmitter<void>();
+  @Input() public isVisible: boolean;
 
-  public emitSideMenuToggled() {
-    this.sideMenuToggled.emit();
+  public toggleMenu() {
+    this.isVisible = !this.isVisible;
   }
 }
