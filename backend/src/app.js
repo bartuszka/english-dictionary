@@ -60,6 +60,7 @@ const words = [
 ];
 
 app.get('/api/words', (req, res) => {
+  // res.status(500).send();
   res.json(words);
 })
 

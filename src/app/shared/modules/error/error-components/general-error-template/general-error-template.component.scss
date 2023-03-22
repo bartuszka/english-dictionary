@@ -1,0 +1,50 @@
+@import '../../../../../../variables';
+
+#backdrop {
+  position: absolute;
+  background-color: $white-text;
+  opacity: .7;
+  width: 100%;
+  height: 100%;
+  z-index: 1002;
+}
+
+section {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 500px;
+  height: 300px;
+  background-color: $white-text;
+  box-shadow: 0 0 5px $shadow;
+  z-index: 1003;
+
+  header, #body {
+    padding: 15px;
+  }
+
+  header {
+    background-color: $medium-blue;
+    color: white;
+    font-size: $h1-font-size;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+
+    app-button {
+      margin-left: 1px;
+    }
+
+    .custom-buttons {
+      width: 100%;
+      display: flex;
+    }
+  }
+}
