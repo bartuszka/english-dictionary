@@ -2,10 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { takeUntil } from 'rxjs';
 
-import { ErrorPlaceholderDirective } from './error/error-placeholder.directive';
-import { ErrorHandlingService } from './error/error-handling.service';
-import { ErrorCallback } from './models/error-callback';
+import { ErrorPlaceholderDirective } from './shared/modules/error/error-placeholder.directive';
+import { ModalCallback } from './models/modal-callback';
 import { Destroyable } from './shared/directives/destroyable';
+import { ModalService } from './shared/services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -15,17 +15,18 @@ import { Destroyable } from './shared/directives/destroyable';
 export class AppComponent extends Destroyable implements OnInit {
   @ViewChild(ErrorPlaceholderDirective, { static: true }) public errorHost: ErrorPlaceholderDirective;
 
-  constructor(private errorHandlingService: ErrorHandlingService) {
+  constructor(private modalService: ModalService) {
     super();
   }
 
   public ngOnInit(): void {
-    this.errorHandlingService.$error
+    this.modalService.modal$
       .pipe(takeUntil(this.destroy$))
-      .subscribe((errorCallback: ErrorCallback) => this.showServerError(errorCallback));
+      .subscribe((modalCallback: ModalCallback) => this.showModal(modalCallback));
   }
 
-  private showServerError(errorCallback: ErrorCallback): void {
-    errorCallback(this.errorHost.viewContainerRef);
+  private showModal(modalCallback: ModalCallback): void {
+    this.errorHost.viewContainerRef.clear();
+    modalCallback(this.errorHost.viewContainerRef);
   }
 }

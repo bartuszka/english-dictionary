@@ -11,8 +11,8 @@ import { catchError, EMPTY, Observable, throwError } from 'rxjs';
 
 import { environment } from '../environments/environment';
 import { ErrorHandlingHttpParams } from './models/error-handling-http-params';
-import { ErrorHandlingService } from './error/error-handling.service';
-import { CustomErrorComponent } from './error/error-components/custom-error/custom-error.component';
+import { ErrorHandlingService } from './shared/modules/error/error-handling.service';
+import { CustomErrorComponent } from './shared/modules/error/error-components/custom-error/custom-error.component';
 
 @Injectable({
   providedIn: 'root'

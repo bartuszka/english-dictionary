@@ -1,34 +1,26 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 
-import { Observable, Subject } from 'rxjs';
-
-import { ErrorCallback } from '../models/error-callback';
 import { ServerErrorComponent } from './error-components/server-error/server-error.component';
 import { GeneralErrorDirective } from './error-components/general-error/general-error.directive';
+import { ModalCallback } from '../../../models/modal-callback';
+import { ModalService } from '../../services/modal.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorHandlingService {
-  private $errorSubject: Subject<ErrorCallback>;
-  public $error: Observable<ErrorCallback>;
-
-  constructor() {
-    this.$errorSubject = new Subject<ErrorCallback>();
-    this.$error = this.$errorSubject.asObservable();
-  }
+  constructor(private modalService: ModalService) {}
 
   public showServerError(error: HttpErrorResponse): void {
-    const errorCb: ErrorCallback = (hostViewContainerRef: ViewContainerRef) => {
-      hostViewContainerRef.clear();
+    const errorCb: ModalCallback = (hostViewContainerRef: ViewContainerRef) => {
       const componentRef: ComponentRef<ServerErrorComponent> = hostViewContainerRef.createComponent(ServerErrorComponent);
       componentRef.instance.error = error;
       componentRef.instance.title = 'Server Error';
       componentRef.instance.$close.subscribe(() => hostViewContainerRef.clear());
     }
 
-    this.$errorSubject.next(errorCb);
+    this.modalService.showModal(errorCb);
   }
 
   public showCustomError<CustomErrorClass extends GeneralErrorDirective>(
