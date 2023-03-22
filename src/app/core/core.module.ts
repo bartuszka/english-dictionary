@@ -7,7 +7,7 @@ import { CircleButtonComponent } from '../components-library/circle-button/circl
 import { HeaderButtonComponent } from '../components-library/header-button/header-button.component';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpInterceptorService } from '../http-interceptor.service';
+import { HttpInterceptorService } from './http-interceptor.service';
 import { ErrorModule } from '../shared/modules/error/error.module';
 import { StoreModule } from '@ngrx/store';
 

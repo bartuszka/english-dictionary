@@ -5,6 +5,7 @@ import { GeneralErrorTemplateComponent } from './error-components/general-error-
 import { ServerErrorComponent } from './error-components/server-error/server-error.component';
 import { CustomErrorComponent } from './error-components/custom-error/custom-error.component';
 import { ButtonComponent } from '../../../components-library/button/button.component';
+import { ClientErrorComponent } from './error-components/client-error/client-error.component';
 
 @NgModule({
   exports: [
@@ -16,6 +17,7 @@ import { ButtonComponent } from '../../../components-library/button/button.compo
     ServerErrorComponent,
     CustomErrorComponent,
     ButtonComponent,
+    ClientErrorComponent,
   ]
 })
 export class ErrorModule {}

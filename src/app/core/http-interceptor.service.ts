@@ -9,10 +9,9 @@ import {
 
 import { catchError, EMPTY, Observable, throwError } from 'rxjs';
 
-import { environment } from '../environments/environment';
-import { ErrorHandlingHttpParams } from './models/error-handling-http-params';
-import { ErrorHandlingService } from './shared/modules/error/error-handling.service';
-import { CustomErrorComponent } from './shared/modules/error/error-components/custom-error/custom-error.component';
+import { environment } from '../../environments/environment';
+import { ErrorHandlingHttpParams } from '../models/error-handling-http-params';
+import { ErrorHandlingService } from '../shared/modules/error/error-handling.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +31,9 @@ export class HttpInterceptorService implements HttpInterceptor {
           return EMPTY;
         }
 
-        if (error.status >= 400) {
-          if (isManualErrorHandling) {
-            this.errorHandlingService.showCustomError(error, CustomErrorComponent);
-          } else {
-            // this.errorHandlingService.showCustomError(error, CustomErrorComponent);
-          }
+        if (error.status >= 400 && !isManualErrorHandling) {
+          this.errorHandlingService.showClientError(error);
+          return EMPTY;
         }
 
         return throwError(() => error);
