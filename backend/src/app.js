@@ -1,67 +1,24 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint no-undef: off */
 /* eslint @typescript-eslint/no-var-requires: off */
-const express = require('express');
-
-const app = express();
-
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X_Request-With, Content-Type, Accept');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
-  next();
-})
-
-const words = [
-  {
-    wordType: 'VERB',
-    verbTypes: ['TRANSITIVE', 'INTRANSITIVE'],
-    name: 'exceed',
-    spelling: 'ɪkˈsiːd',
-    secondForm: 'exceeded',
-    secondFormSpelling: 'ɪkˈsiːdid',
-    thirdForm: 'exceeded',
-    thirdFormSpelling: 'ɪkˈsiːdid',
-    translations: [
-      {
-        contextWordType: 'TRANSITIVE',
-        useCase: '[+ sth]:',
-        context: 'We have exceeded the available limit.',
-        translation: 'Przekroczyć, Wyjść poza',
-        synonyms: ['overstep', 'cross']
-      },
-      {
-        contextWordType: 'INTRANSITIVE',
-        context: 'Do not exceed!',
-        translation: 'Przekroczyć się',
-      },
-    ]
-  },
-  {
-    wordType: 'NOUN',
-    nounTypes: ['COUNTABLE', 'UNCOUNTABLE'],
-    name: 'ambition',
-    spelling: 'æmˈbɪʃən',
-    pluralForm: 'ambitions',
-    pluralFormSpelling: 'æmˈbɪʃənz',
-    translations: [
-      {
-        contextWordType: 'COUNTABLE',
-        useCase: ' [+ of beeing/doing sth]:',
-        context: 'She never achieved her ambition of becoming a famous writer.',
-        translation: 'Ambicja',
-      },
-      {
-        contextWordType: 'UNCOUNTABLE',
-        context: 'motivated by personal ambition',
-        translation: 'Ambicjonalność',
-      },
-    ]
-  }
-];
-
-app.get('/api/words', (req, res) => {
-  // res.status(500).send();
-  res.json(words);
-})
-
-module.exports = app;
+const express_1 = __importDefault(require("express"));
+const body_parser_1 = __importDefault(require("body-parser"));
+const words_1 = __importDefault(require("./routes/words"));
+const expressApp = (0, express_1.default)();
+expressApp.use(body_parser_1.default.json());
+expressApp.use(body_parser_1.default.urlencoded({ extended: false }));
+expressApp.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X_Request-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    next();
+});
+expressApp.use(words_1.default);
+expressApp.use((error, req, res, next) => {
+    res.status(error.status).json(error);
+});
+exports.default = expressApp;

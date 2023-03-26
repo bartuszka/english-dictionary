@@ -1,0 +1,4 @@
+export enum ErrorName {
+  EXISTING_WORD = 'EXISTING_WORD',
+  NOT_EXISTING_WORD = 'NOT_EXISTING_WORD',
+}

@@ -1,12 +1,20 @@
 {
   "root": true,
   "ignorePatterns": [
-    "projects/**/*"
+    "projects/**/*",
+    "*.js"
   ],
   "overrides": [
     {
+      "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      },
       "files": [
-        "*.ts", "*.js"
+        "*.ts"
       ],
       "extends": [
         "eslint:recommended",

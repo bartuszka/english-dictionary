@@ -1,30 +1,34 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { map, Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import * as WordsActions from '../search-results/search-results-store/words.actions';
-import { WordsState } from '../models/words-state';
-import { Word } from '../models/word';
+import * as WordsActions from './search-results/search-results-store/words.actions';
+import { WordsState } from './models/words-state';
+import { Word } from './models/word';
+import { WordsServerService } from './words-server.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SearchResultsService {
+export class WordsStateService {
   public words$: Observable<Word[]>;
 
   constructor(
-    public httpClient: HttpClient,
     private store: Store<{ wordsState: WordsState }>,
+    private wordsServerService: WordsServerService
   ) {
     this.setWordsStream();
   }
 
   public fetchWords(): Observable<Word[]> {
-    return this.httpClient.get<Word[]>('words').pipe(
+    return this.wordsServerService.fetchWords().pipe(
       tap((words: Word[]) => this.store.dispatch(new WordsActions.AddWords(words)))
     );
+  }
+
+  public addWord(word: Word): void {
+    this.wordsServerService.addWord(word).subscribe(data => console.log(data));
   }
 
   private setWordsStream(): void {

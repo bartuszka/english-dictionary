@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start-backend": "node backend/src/server.js",
+    "start-backend": "node backend/src/server.ts",
     "build-dev": "ng build --configuration development",
     "build-prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
@@ -24,10 +24,10 @@
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
     "@ngrx/store": "^15.4.0",
+    "bch-dc-components": "^0.0.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.12.0",
-    "bch-dc-components": "^0.0.5"
+    "zone.js": "~0.12.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.2",
@@ -48,6 +48,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "prettier": "^2.8.7",
     "stylelint": "^15.2.0",
     "stylelint-config-standard": "^30.0.1",
     "stylelint-config-standard-scss": "^7.0.1",

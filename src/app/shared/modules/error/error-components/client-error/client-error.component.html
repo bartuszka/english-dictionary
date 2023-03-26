@@ -5,6 +5,6 @@
       <span class="material-symbols-outlined">warning</span>
       <span>We are sorry. A client has occurred. Please try again.</span>
     </p>
-    <p id="error-message">{{ error.message }}</p>
+    <p id="error-message">{{ error.error.message || error.message }}</p>
   </div>
 </app-general-error-template>
