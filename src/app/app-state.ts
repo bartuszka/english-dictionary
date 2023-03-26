@@ -1,4 +1,4 @@
-import { WordsState } from './models/words-state';
+import { WordsState } from './words/models/words-state';
 import { ActionReducerMap } from '@ngrx/store';
 import { wordsReducer } from './words/word-store/words.reducer';
 

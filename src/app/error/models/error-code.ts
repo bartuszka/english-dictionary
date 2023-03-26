@@ -1,0 +1,7 @@
+export enum ExternalErrorCode {
+  GENERAL_ERROR_CODE = 'GENERAL_ERROR_CODE',
+}
+
+export enum InternalErrorCode {
+  ROUTER_LINK_NOT_MATCHING_HEADER_OPTIONS = 'ROUTER_LINK_NOT_MATCHING_HEADER_OPTIONS',
+}

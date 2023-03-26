@@ -31,7 +31,12 @@
           </span>
         </div>
 
-        <div>{{ word.wordType }}</div>
+        <div>
+          {{ word.wordType }}
+          <button class="clean-button" (click)="editWord(word)">
+            <span class="material-symbols-outlined">edit_square</span>
+          </button>
+        </div>
       </div>
 
       <div class="body">

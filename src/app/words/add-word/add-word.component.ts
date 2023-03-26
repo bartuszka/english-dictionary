@@ -1,16 +1,25 @@
-import { Component } from '@angular/core';
-import { WordType } from '../../models/word-type';
-import { NounType } from '../../models/noun-type';
+import { Component, OnInit } from '@angular/core';
+import { WordType } from '../models/word-type';
+import { NounType } from '../models/noun-type';
 import { WordsStateService } from '../services/words-state.service';
+import { take } from 'rxjs';
+import { Word } from '../models/word';
 
 @Component({
   selector: 'app-add-word',
   templateUrl: './add-word.component.html',
   styleUrls: ['./add-word.component.scss']
 })
-export class AddWordComponent {
+export class AddWordComponent implements OnInit {
+  public editedWord: Word;
 
   constructor(private wordsStateService: WordsStateService) {}
+
+  public ngOnInit(): void {
+    this.wordsStateService.editedWord$
+      .pipe(take(1))
+      .subscribe(editedWord => this.editedWord = editedWord);
+  }
 
   public backendTest() {
     this.wordsStateService.dispatchAddWord({
@@ -38,7 +47,7 @@ export class AddWordComponent {
   }
 
   public backendEditTest() {
-    this.wordsStateService.dispatchEditWord({
+    const editedWord: Word = {
       id: '638349060',
       wordType: WordType.NOUN,
       nounTypes: [NounType.COUNTABLE],
@@ -59,6 +68,8 @@ export class AddWordComponent {
           translation: 'Szczeniakowość',
         },
       ]
-    }).subscribe();
+    }
+
+    this.wordsStateService.dispatchEditWord(editedWord).subscribe();
   }
 }

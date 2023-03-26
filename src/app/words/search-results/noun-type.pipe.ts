@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Noun } from '../../models/noun';
-import { Word } from '../../models/word';
+import { Noun } from '../models/noun';
+import { Word } from '../models/word';
 
 @Pipe({
   name: 'nounType'

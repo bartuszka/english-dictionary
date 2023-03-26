@@ -4,21 +4,24 @@ import { map, Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import * as WordsActions from '../word-store/words.actions';
-import { WordsState } from '../../models/words-state';
-import { Word } from '../../models/word';
+import { WordsState } from '../models/words-state';
+import { Word } from '../models/word';
 import { WordsServerService } from './words-server.service';
+import { AppState } from '../../app-state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WordsStateService {
   public words$: Observable<Word[]>;
+  public editedWord$: Observable<Word>;
 
   constructor(
-    private store: Store<{ wordsState: WordsState }>,
+    private store: Store<AppState>,
     private wordsServerService: WordsServerService
   ) {
     this.setWordsStream();
+    this.setEditedWordStream();
   }
 
   public dispatchGetWords(): Observable<Word[]> {
@@ -42,6 +45,12 @@ export class WordsStateService {
   private setWordsStream(): void {
     this.words$ = this.store.select('wordsState').pipe(
       map((wordsState: WordsState) => wordsState.searchedWords)
+    );
+  }
+
+  private setEditedWordStream(): void {
+    this.editedWord$ = this.store.select('wordsState').pipe(
+      map((wordsState: WordsState) => wordsState.editedWord),
     );
   }
 }

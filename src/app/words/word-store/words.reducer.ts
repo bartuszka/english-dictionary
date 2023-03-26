@@ -1,10 +1,11 @@
 import * as WordStateActions from './words.actions';
 
-import { WordsState } from '../../models/words-state';
-import { Word } from '../../models/word';
+import { WordsState } from '../models/words-state';
+import { Word } from '../models/word';
 
 const initialState: WordsState = {
-  searchedWords: null
+  searchedWords: null,
+  editedWord: null
 }
 
 export function wordsReducer(state: WordsState = initialState, action: WordStateActions.WordActions): WordsState {

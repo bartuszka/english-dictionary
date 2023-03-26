@@ -3,9 +3,10 @@ import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 
 import { ServerErrorComponent } from './error-components/server-error/server-error.component';
 import { GeneralErrorDirective } from './error-components/general-error/general-error.directive';
-import { ModalCallback } from '../../../models/modal-callback';
-import { ModalService } from '../../services/modal.service';
+import { ModalCallback } from '../shared/models/modal-callback';
+import { ModalService } from '../shared/services/modal.service';
 import { ClientErrorComponent } from './error-components/client-error/client-error.component';
+import { InternalError } from './models/error';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,9 @@ export class ErrorHandlingService {
     }
 
     this.modalService.showModal(errorCb);
+  }
+
+  public showInternalError(error: InternalError) {
+    throw error;
   }
 }

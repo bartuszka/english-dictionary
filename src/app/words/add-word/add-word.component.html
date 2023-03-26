@@ -1,4 +1,5 @@
-<p>add-word works!</p>
+<p>Mode: {{ editedWord ? 'Edit Word' : 'Add Word' }}</p>
+<p *ngIf="editedWord">{{ editedWord.name }}</p>
 
 <button (click)="backendTest()">Add Word</button>
 <button (click)="backendEditTest()">Edit Word</button>

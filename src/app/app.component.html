@@ -1,10 +1,15 @@
 <ng-template appErrorPlaceholder></ng-template>
-<app-header></app-header>
+<app-header title="Bart's Dictionary"
+            [buttons]="headerButtons"
+            (pageSelected)="setFilters($event)">
+</app-header>
 
 <div id="container">
   <app-side-menu [sideMenuWidth]="270"
                  [headerHeight]="70"
                  [isVisible]="true">
+    <app-search-filters *ngIf="currentPageForFilters === navigationLinks.SEARCH_RESULTS"></app-search-filters>
+    <app-add-word-filters *ngIf="currentPageForFilters === navigationLinks.ADD_WORD"></app-add-word-filters>
   </app-side-menu>
 
   <div id="content-container">

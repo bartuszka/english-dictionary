@@ -1,11 +1,15 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddWordComponent } from './add-word.component';
+import { WordsStateService } from '../services/words-state.service';
 
 const addWordRoutes: Routes = [
   {
     path: '',
-    component: AddWordComponent
+    component: AddWordComponent,
+    resolve: {
+      editedWord: () => inject(WordsStateService).editedWord$
+    }
   }
 ]
 

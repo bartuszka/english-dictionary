@@ -1,14 +1,10 @@
-@import '../../../../variables';
+@import '../../variables';
+@import '../../icons';
 
-.material-symbols-outlined {
+@include create-icon(0, 800, 0, 48) {
   margin-right: 10px;
   color: $error-red;
   font-size: 40px;
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 800,
-    'GRAD' 0,
-    'opsz' 48
 }
 
 #error-description {

@@ -1,13 +1,13 @@
 <header>
-  <h1 id="logo" [ngStyle]="{ width: sideMenuWidth + 'px' }">Bart's Dictionary</h1>
+  <h1 id="logo" [ngStyle]="{ width: sideMenuWidth + 'px' }">{{ title }}</h1>
 
   <nav>
     <ul>
-      <li>
-        <dc-link-button routerLink="./search-results" routerLinkActive="active">Search</dc-link-button>
-      </li>
-      <li>
-        <dc-link-button routerLink="./add-word" routerLinkActive="active">Add a word</dc-link-button>
+      <li *ngFor="let button of buttons">
+        <dc-link-button [routerLink]="button.url"
+                        routerLinkActive="active"
+                        (click)="selectPage(button)">{{ button.message }}
+        </dc-link-button>
       </li>
     </ul>
   </nav>

@@ -6,29 +6,23 @@ import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 
 import { HeaderComponent } from '../header/header.component';
-import { SideMenuComponent } from '../side-menu/side-menu.component';
-import { SideMenuDirective } from '../side-menu/side-menu.directive';
-import { CircleButtonComponent } from '../components-library/circle-button/circle-button.component';
 import { HttpInterceptorService } from './http-interceptor.service';
-import { ErrorModule } from '../shared/modules/error/error.module';
+import { ErrorModule } from '../error/error.module';
+import { SideMenuModule } from '../side-menu/side-menu.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    StoreModule
+    StoreModule,
   ],
   declarations: [
     HeaderComponent,
-    SideMenuComponent,
-    SideMenuDirective,
-    CircleButtonComponent,
   ],
   exports: [
+    SideMenuModule,
     ErrorModule,
     HeaderComponent,
-    SideMenuComponent,
-    CircleButtonComponent,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }

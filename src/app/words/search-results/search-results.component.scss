@@ -1,4 +1,6 @@
 @import '../../../variables';
+@import '../../../styles';
+@import '../../../icons';
 
 #search-results-container {
   margin: 20px;
@@ -22,17 +24,32 @@
       background-color: $dark-blue;
       color: white;
 
+      & span::before {
+        content: ' ';
+      }
+
       h1, div {
         display: inline;
         font-size: $h2-font-size;
+        user-select: none;
 
         &:last-child {
           margin-left: 50px;
         }
       }
 
-      & span::before {
-        content: ' ';
+      @include create-icon(0, 400, 0, 48) {
+        margin-left: 5px;
+        cursor: pointer;
+        color: $white-text;
+
+        &:hover {
+          color: $light-blue;
+        }
+
+        &:active {
+          color: $medium-blue;
+        }
       }
     }
 
