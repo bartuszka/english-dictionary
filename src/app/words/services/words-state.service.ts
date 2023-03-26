@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import * as WordsActions from './search-results/search-results-store/words.actions';
-import { WordsState } from './models/words-state';
-import { Word } from './models/word';
+import * as WordsActions from '../word-store/words.actions';
+import { WordsState } from '../../models/words-state';
+import { Word } from '../../models/word';
 import { WordsServerService } from './words-server.service';
 
 @Injectable({
@@ -21,14 +21,22 @@ export class WordsStateService {
     this.setWordsStream();
   }
 
-  public fetchWords(): Observable<Word[]> {
+  public dispatchGetWords(): Observable<Word[]> {
     return this.wordsServerService.fetchWords().pipe(
       tap((words: Word[]) => this.store.dispatch(new WordsActions.AddWords(words)))
     );
   }
 
-  public addWord(word: Word): void {
-    this.wordsServerService.addWord(word).subscribe(data => console.log(data));
+  public dispatchAddWord(word: Word): Observable<Word> {
+    return this.wordsServerService.addWord(word).pipe(
+      tap((word: Word) => this.store.dispatch(new WordsActions.AddWord(word)))
+    );
+  }
+
+  public dispatchEditWord(word: Word): Observable<Word> {
+    return this.wordsServerService.editWord(word).pipe(
+      tap((word: Word) => this.store.dispatch(new WordsActions.EditWord(word)))
+    );
   }
 
   private setWordsStream(): void {

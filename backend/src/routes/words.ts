@@ -27,7 +27,7 @@ wordsRouter.post('/api/add-word', (req: Request, res: Response, next: NextFuncti
   }
 })
 
-wordsRouter.post('/api/edit-word', (req: Request, res: Response, next: NextFunction) => {
+wordsRouter.put('/api/edit-word', (req: Request, res: Response, next: NextFunction) => {
   const existingWordIndex: number = words.findIndex((word: Word) => word.id === req.body.id);
 
   if (existingWordIndex === -1) {

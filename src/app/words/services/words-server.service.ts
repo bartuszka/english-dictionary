@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Word } from './models/word';
+import { Word } from '../../models/word';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -15,5 +15,9 @@ export class WordsServerService {
 
   public addWord(word: Word): Observable<Word> {
     return this.httpClient.post<Word>('add-word', word);
+  }
+
+  public editWord(word: Word): Observable<Word> {
+    return this.httpClient.put<Word>('edit-word', word);
   }
 }

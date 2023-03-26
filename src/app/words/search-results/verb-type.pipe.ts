@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Word } from '../models/word';
-import { Verb } from '../models/verb';
+import { Word } from '../../models/word';
+import { Verb } from '../../models/verb';
 
 @Pipe({
   name: 'verbType'

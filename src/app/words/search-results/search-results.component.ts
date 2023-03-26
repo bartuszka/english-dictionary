@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { WordsState } from '../models/words-state';
-import { Word } from '../models/word';
+import { WordsState } from '../../models/words-state';
+import { Word } from '../../models/word';
 import { Observable } from 'rxjs';
-import { WordsStateService } from '../words-state.service';
-import { Verb } from '../models/verb';
-import { Noun } from '../models/noun';
+import { WordsStateService } from '../services/words-state.service';
+import { Verb } from '../../models/verb';
+import { Noun } from '../../models/noun';
 
 @Component({
   selector: 'app-search-results',

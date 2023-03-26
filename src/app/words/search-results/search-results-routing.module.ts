@@ -1,13 +1,13 @@
 import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchResultsComponent } from './search-results.component';
-import { WordsStateService } from '../words-state.service';
+import { WordsStateService } from '../services/words-state.service';
 
 const searchResultRoutes: Routes = [{
   path: '',
   component: SearchResultsComponent,
   resolve: {
-    words: () => inject(WordsStateService).fetchWords()
+    words: () => inject(WordsStateService).dispatchGetWords()
   }
 }];
 

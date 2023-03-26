@@ -9,11 +9,11 @@ const routes: Routes = [
   },
   {
     path: 'search-results',
-    loadChildren: () => import('./search-results/search-results.module').then(m => m.SearchResultsModule)
+    loadChildren: () => import('./words/search-results/search-results.module').then(m => m.SearchResultsModule)
   },
   {
     path: 'add-word',
-    loadChildren: () => import('./add-word/add-word.module').then(m => m.AddWordModule)
+    loadChildren: () => import('./words/add-word/add-word.module').then(m => m.AddWordModule)
   }
 ];
 

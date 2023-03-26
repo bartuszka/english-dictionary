@@ -23,7 +23,7 @@ wordsRouter.post('/api/add-word', (req, res, next) => {
         res.json(copiedBody);
     }
 });
-wordsRouter.post('/api/edit-word', (req, res, next) => {
+wordsRouter.put('/api/edit-word', (req, res, next) => {
     const existingWordIndex = words_1.words.findIndex((word) => word.id === req.body.id);
     if (existingWordIndex === -1) {
         next(errors_1.default.get(error_name_1.ErrorName.NOT_EXISTING_WORD));
