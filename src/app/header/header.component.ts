@@ -13,7 +13,10 @@ export class HeaderComponent {
   @Input() public buttons: HeaderButton[];
   @Output() public pageSelected: EventEmitter<HeaderButton> = new EventEmitter<HeaderButton>();
 
+  public menuOpened: boolean = false;
+
   public selectPage(button: HeaderButton): void {
+    this.menuOpened = false;
     this.pageSelected.emit(button);
   }
 }

@@ -11,8 +11,8 @@
     width: 32px;
     height: 32px;
     border-radius: 16px;
-    border: solid $dark-violet 1px;
     background-color: $medium-violet;
+    box-shadow: $first-level-sharp-shadow;
   }
 
   @include create-icon(1, 200, 0, 40) {

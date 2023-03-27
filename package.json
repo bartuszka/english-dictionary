@@ -12,7 +12,8 @@
     "test:ci": "ng test --browsers ChromeHeadless --code-coverage --watch=false",
     "lint": "ng lint",
     "lint-backend": "eslint backend",
-    "stylelint": "npx stylelint \"**/*.scss\""
+    "stylelint": "npx stylelint \"**/*.scss\"",
+    "run-tests": "concurrently \"npm run test:ci\" \"npm run lint\" \"npm run lint-backend\" \"npm run stylelint\""
   },
   "private": true,
   "dependencies": {
@@ -43,6 +44,7 @@
     "@types/jasmine": "~4.3.0",
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",
+    "concurrently": "^7.6.0",
     "eslint": "^8.33.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",

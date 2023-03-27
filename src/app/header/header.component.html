@@ -1,7 +1,11 @@
 <header>
+  <div id="menu-button">
+    <span class="material-symbols-outlined" (click)="menuOpened = !menuOpened">menu</span>
+  </div>
+
   <h1 id="logo" [ngStyle]="{ width: sideMenuWidth + 'px' }">{{ title }}</h1>
 
-  <nav>
+  <nav [ngClass]="{ 'opened': menuOpened }">
     <ul>
       <li *ngFor="let button of buttons">
         <dc-link-button [routerLink]="button.url"

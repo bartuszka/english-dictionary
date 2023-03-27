@@ -8,6 +8,10 @@ const words_1 = require("../data/words");
 const errors_1 = __importDefault(require("../data/errors"));
 const error_name_1 = require("../models/error/error-name");
 const wordsRouter = express_1.default.Router();
+wordsRouter.get('/api/word-list', (req, res) => {
+    const wordList = words_1.words.map((word) => ({ id: word.id, name: word.name, wordType: word.wordType }));
+    res.json(wordList);
+});
 wordsRouter.get('/api/words', (req, res) => {
     // res.status(500).send();
     res.json(words_1.words);

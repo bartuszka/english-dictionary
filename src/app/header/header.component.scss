@@ -1,5 +1,6 @@
 @import '../../variables';
 @import '../../breakpoints';
+@import '../../icons';
 
 $header-line-height: 70px;
 
@@ -9,35 +10,91 @@ $header-line-height: 70px;
 
 header {
   display: flex;
-  width: 100%;
-  color: $white-text;
   background-image: linear-gradient(to right, $medium-blue, $light-blue);
+  box-shadow: $first-level-shadow;
 
   h1 {
+    color: $white-text;
     min-width: 270px;
     line-height: $header-line-height;
     text-align: center;
-  }
-
-  li {
-    display: inline-block;
-    height: $header-line-height;
-    line-height: $header-line-height;
+    transition: text-indent ease-out .2s;
 
     @include breakpoint-mobile {
-      width: 50%;
+      text-align: left;
+      text-indent: 60px;
+      width: 100%;
+      background-image: linear-gradient(to right, $medium-blue, $light-blue);
+      z-index: 1001;
     }
+  }
 
-    dc-link-button {
-      width: 200px;
+  ul {
+    li {
+      display: inline-block;
+      line-height: $header-line-height;
 
       @include breakpoint-mobile {
-        width: 100%;
+        display: block;
+      }
+
+      dc-link-button {
+        width: 200px;
+
+        @include breakpoint-mobile {
+          width: 100%;
+        }
+      }
+    }
+
+    @include breakpoint-mobile {
+      box-shadow: $first-level-shadow;
+    }
+  }
+
+  nav {
+    transition: transform ease-out .2s;
+
+    @include breakpoint-mobile {
+      width: 100%;
+      position: absolute;
+      top: -200px;
+      z-index: 1000;
+      transform: translateY(-100%);
+
+      &.opened {
+        top: 0;
+        transform: translateY($header-line-height);
       }
     }
   }
 
-  @include breakpoint-mobile {
-    display: block;
+  #menu-button {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    margin-left: -70px;
+    align-items: center;
+    z-index: 1002;
+    transition: margin-left ease-out .2s;
+
+    @include create-icon(0, 400, 0, 48) {
+      margin-left: 5px;
+      font-size: 45px;
+      cursor: pointer;
+      color: $white-text;
+
+      &:hover {
+        color: $light-blue;
+      }
+
+      &:active {
+        color: $medium-blue;
+      }
+    }
+
+    @include breakpoint-mobile {
+      margin-left: 0;
+    }
   }
 }

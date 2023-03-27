@@ -7,6 +7,7 @@ $grey-text: #aaa;
 $medium-violet: #b479b4;
 $dark-violet: #4a3248;
 $shadow: #595959;
+$dark-shadow: #333;
 $error-red: #cb0000;
 $error-yellow: #ffae00;
 
@@ -23,3 +24,7 @@ $left-space-box-m: 20px;
 $left-space-box-s: 10px;
 $left-space-box-xs: 5px;
 $text-line-height: 25px;
+
+// Shadows
+$first-level-shadow: 0 0 10px $shadow;
+$first-level-sharp-shadow: 0 0 5px 1px $dark-shadow;
