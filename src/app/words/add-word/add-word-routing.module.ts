@@ -7,6 +7,7 @@ const addWordRoutes: Routes = [
   {
     path: '',
     component: AddWordComponent,
+    canDeactivate: [(component: AddWordComponent) => component.confirmDeactivate()],
     resolve: {
       editedWord: () => inject(WordsStateService).editedWord$
     }

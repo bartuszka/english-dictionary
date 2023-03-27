@@ -22,6 +22,8 @@ export class WordsStateService {
   ) {
     this.setWordsStream();
     this.setEditedWordStream();
+
+    this.editedWord$.subscribe(data => console.log(data))
   }
 
   public dispatchGetWords(): Observable<Word[]> {
@@ -40,6 +42,10 @@ export class WordsStateService {
     return this.wordsServerService.editWord(word).pipe(
       tap((word: Word) => this.store.dispatch(new WordsActions.EditWord(word)))
     );
+  }
+
+  public dispatchSetEditWord(word: Word): void {
+    this.store.dispatch(new WordsActions.SetEditedWord(word));
   }
 
   private setWordsStream(): void {

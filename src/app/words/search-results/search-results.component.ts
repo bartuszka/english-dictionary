@@ -22,6 +22,7 @@ export class SearchResultsComponent implements OnInit {
 
   public editWord(word: Word) {
     //TO-DO
+    this.searchResultsService.dispatchSetEditWord(word);
     this.router.navigate(['/add-word']);
   }
 }

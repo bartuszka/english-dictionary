@@ -5,6 +5,7 @@ import { Word } from '../models/word';
 export const ADD_WORDS = '[Word] ADD_WORDS';
 export const ADD_WORD = '[Word] ADD_WORD';
 export const EDIT_WORD = '[Word] EDIT_WORD';
+export const SET_EDITED_WORD = '[Word] SET_EDITED_WORD';
 
 export class AddWords implements Action {
   readonly type: '[Word] ADD_WORDS' = ADD_WORDS;
@@ -21,7 +22,13 @@ export class EditWord implements Action {
   constructor(public payload: Word) {}
 }
 
+export class SetEditedWord implements Action {
+  readonly type: '[Word] SET_EDITED_WORD' = SET_EDITED_WORD;
+  constructor(public payload: Word) {}
+}
+
 export type WordActions =
   AddWords
   | AddWord
-  | EditWord;
+  | EditWord
+  | SetEditedWord;

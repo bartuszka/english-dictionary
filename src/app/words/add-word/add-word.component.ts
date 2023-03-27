@@ -2,23 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import { WordType } from '../models/word-type';
 import { NounType } from '../models/noun-type';
 import { WordsStateService } from '../services/words-state.service';
-import { take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Word } from '../models/word';
+import { ErrorHandlingService } from '../../error/error-handling.service';
+import { Deactivable } from '../../shared/directives/deactivable';
+import { WarningMessages } from '../../error/models/warning-messages';
 
 @Component({
   selector: 'app-add-word',
   templateUrl: './add-word.component.html',
   styleUrls: ['./add-word.component.scss']
 })
-export class AddWordComponent implements OnInit {
+export class AddWordComponent extends Deactivable implements OnInit {
   public editedWord: Word;
 
-  constructor(private wordsStateService: WordsStateService) {}
+  constructor(private wordsStateService: WordsStateService, private errorHandlingService: ErrorHandlingService) {
+    super();
+  }
 
   public ngOnInit(): void {
     this.wordsStateService.editedWord$
       .pipe(take(1))
       .subscribe(editedWord => this.editedWord = editedWord);
+  }
+
+  public confirmDeactivate(): Observable<boolean> {
+    this.errorHandlingService.showWarning(
+      WarningMessages.ADD_WORD_LEAVE_CONFIRM,
+      () => {
+        this.wordsStateService.dispatchSetEditWord(null);
+        this.canDeactivateSubject$.next(true);
+      }
+    );
+    return this.canDeactivate$;
   }
 
   public backendTest() {

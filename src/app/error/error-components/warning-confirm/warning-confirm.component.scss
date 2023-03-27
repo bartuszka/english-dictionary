@@ -1,0 +1,7 @@
+@import '../../../../variables';
+
+:host {
+  .material-symbols-outlined {
+    color: $error-yellow;
+  }
+}

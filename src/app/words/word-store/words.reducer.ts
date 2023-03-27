@@ -18,7 +18,7 @@ export function wordsReducer(state: WordsState = initialState, action: WordState
   case WordStateActions.ADD_WORD:
     return {
       ...state,
-      searchedWords: [...state.searchedWords, action.payload]
+      searchedWords: [...state.searchedWords, { ...action.payload }]
     };
 
   case WordStateActions.EDIT_WORD: {
@@ -36,6 +36,12 @@ export function wordsReducer(state: WordsState = initialState, action: WordState
 
     return { ...state };
   }
+
+  case WordStateActions.SET_EDITED_WORD:
+    return {
+      ...state,
+      editedWord: action.payload ? { ...action.payload } : null
+    }
 
   default:
     return { ...state }

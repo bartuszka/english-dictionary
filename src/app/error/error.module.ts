@@ -6,8 +6,13 @@ import { ServerErrorComponent } from './error-components/server-error/server-err
 import { CustomErrorComponent } from './error-components/custom-error/custom-error.component';
 import { ButtonComponent } from '../components-library/button/button.component';
 import { ClientErrorComponent } from './error-components/client-error/client-error.component';
+import { WarningConfirmComponent } from './error-components/warning-confirm/warning-confirm.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
+  imports: [
+    CommonModule
+  ],
   exports: [
     ErrorPlaceholderDirective
   ],
@@ -18,6 +23,7 @@ import { ClientErrorComponent } from './error-components/client-error/client-err
     CustomErrorComponent,
     ButtonComponent,
     ClientErrorComponent,
+    WarningConfirmComponent,
   ]
 })
 export class ErrorModule {}

@@ -45,6 +45,10 @@ section {
     .custom-buttons {
       width: 100%;
       display: flex;
+
+      &.align-right {
+        justify-content: flex-end;
+      }
     }
   }
 }

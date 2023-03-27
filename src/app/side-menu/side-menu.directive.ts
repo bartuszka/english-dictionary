@@ -7,10 +7,13 @@ export class SideMenuDirective implements AfterViewInit {
   @Input() public headerHeight: number;
   @Input() public sideMenuWidth: number;
 
-  private _isVisible: boolean;
+  private readonly parentComponent: HTMLElement;
   private isMobile: boolean;
+  private _isVisible: boolean;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+    this.parentComponent = this.elementRef.nativeElement.parentElement;
+  }
 
   @HostListener('window:resize', ['$event']) onResize(event: Event) {
     this.setDimensions((event.target as Window).innerWidth);
@@ -33,27 +36,27 @@ export class SideMenuDirective implements AfterViewInit {
     if (this.isMobile !== isMobile) {
       this.isMobile = isMobile;
       this.setLeftPosition(this._isVisible);
-      this.renderer.setStyle(this.elementRef.nativeElement.parentElement, 'width',
+      this.renderer.setStyle(this.parentComponent, 'width',
         !this.isMobile ? this.sideMenuWidth + 'px' : '100%');
     }
 
-    this.renderer.setStyle(this.elementRef.nativeElement.parentElement, 'height', window.innerHeight - this.headerHeight + 'px');
+    this.renderer.setStyle(this.parentComponent, 'height', window.innerHeight - this.headerHeight + 'px');
   }
 
   private setLeftPosition(isVisible: boolean): void {
     if (this.sideMenuWidth) {
-      this.renderer.setStyle(this.elementRef.nativeElement.parentElement, 'margin-left',
+      this.renderer.setStyle(this.parentComponent, 'margin-left',
         !isVisible && !this.isMobile ? -this.sideMenuWidth + 'px' : 0);
     }
   }
 
   private setHiddenClass(isVisible: boolean): void {
     isVisible
-      ? this.renderer.removeClass(this.elementRef.nativeElement.parentElement, 'hidden')
-      : this.renderer.addClass(this.elementRef.nativeElement.parentElement, 'hidden');
+      ? this.renderer.removeClass(this.parentComponent, 'hidden')
+      : this.renderer.addClass(this.parentComponent, 'hidden');
   }
 
   private setTransitions(isVisible: boolean): void {
-    this.renderer.setStyle(this.elementRef.nativeElement.parentElement, 'transition', !isVisible ? 'none ease-out .2s' : 'all ease-out .2s');
+    this.renderer.setStyle(this.parentComponent, 'transition', !isVisible ? 'none ease-out .2s' : 'all ease-out .2s');
   }
 }

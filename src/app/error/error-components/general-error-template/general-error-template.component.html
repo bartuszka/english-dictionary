@@ -3,14 +3,17 @@
   <header>
     <h1>{{ title }}</h1>
   </header>
+
   <div id="body">
     <ng-content select="[body]"></ng-content>
   </div>
+
   <footer>
-    <div class="custom-buttons">
+    <div class="custom-buttons"
+         [ngClass]="{ 'align-right': customButtonsAlignRight }">
       <ng-content select="[footer]"></ng-content>
     </div>
-    <app-button message="OK"
+    <app-button [message]="closeButtonMessage"
                 (click)="closeSelected()">
     </app-button>
   </footer>

@@ -1,0 +1,15 @@
+<app-general-error-template [title]="title"
+                            closeButtonMessage="Cancel"
+                            [customButtonsAlignRight]="true"
+                            (closed)="close()">
+  <div body>
+    <p id="error-description">
+      <span class="material-symbols-outlined">warning</span>
+      <span>{{ message }}</span>
+    </p>
+  </div>
+
+  <div footer>
+    <app-button message="Confirm" (click)="confirm()"></app-button>
+  </div>
+</app-general-error-template>

@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'add-word',
-    loadChildren: () => import('./words/add-word/add-word.module').then(m => m.AddWordModule)
+    loadChildren: () => import('./words/add-word/add-word.module').then(m => m.AddWordModule),
   }
 ];
 
