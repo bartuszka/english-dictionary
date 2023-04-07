@@ -1,0 +1,15 @@
+<section>
+  <ul>
+    <li *ngFor="let word of (words$ | async)">
+      <app-word-header [word]="word"
+                       (wordEditSelected)="editWord(word)">
+      </app-word-header>
+
+      <div class="body">
+        <app-word-translation *ngFor="let translation of word.translations"
+                              [translation]="translation">
+        </app-word-translation>
+      </div>
+    </li>
+  </ul>
+</section>

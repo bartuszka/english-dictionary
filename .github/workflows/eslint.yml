@@ -19,6 +19,8 @@ jobs:
         run: npm install -g @angular/cli > /dev/null
       - name: Run linters and prettier fix
         run: npm run lint
+      - name: Run linters and prettier fix for backend
+        run: npm run lint-backend
       - name: Run Test
         run: npm run test:ci
       - name: Run Test-StyleLint

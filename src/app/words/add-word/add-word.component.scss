@@ -1,0 +1,38 @@
+@import 'bch-dc-styles';
+
+fieldset {
+  margin-bottom: 30px;
+  padding: 10px 20px 20px;
+  border: solid $color-primary-light 1px;
+  display: flex;
+
+  legend {
+    font-size: $font-size-header-second;
+    padding: 0 10px;
+    color: $color-primary-medium;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    input, label {
+      display: block;
+      border: solid $color-primary-dark 1px;
+    }
+
+    input {
+      padding: 3px;
+    }
+
+    label {
+      padding: 0 3px;
+      background-color: $color-primary-dark;
+      color: $color-white;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+  }
+}

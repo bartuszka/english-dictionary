@@ -1,13 +1,17 @@
 <ng-template appErrorPlaceholder></ng-template>
-<app-header></app-header>
 
-<div id="container">
-  <app-side-menu [sideMenuWidth]="270"
-                 [headerHeight]="70"
-                 [isVisible]="true">
-  </app-side-menu>
+<bch-dc-header title="Bart's Dictionary" [buttons]="headerButtons"></bch-dc-header>
 
-  <div id="content-container">
-    <router-outlet></router-outlet>
-  </div>
+<bch-dc-side-menu [sideMenuWidth]="270"
+                  [headerHeight]="70"
+                  [modeOverlap]="sideMenuDisplayModes.ADJACENT"
+                  [isVisible]="true">
+  <app-search-filters *ngIf="currentPageForFilters === navigationLinks.SEARCH_RESULTS"></app-search-filters>
+  <app-add-word-filters *ngIf="currentPageForFilters &&
+                                  (currentPageForFilters === navigationLinks.ADD_WORD ||
+                                  (navigationLinks.EDIT_WORD | isIncludedIn : currentPageForFilters))"></app-add-word-filters>
+</bch-dc-side-menu>
+
+<div id="content-container">
+  <router-outlet></router-outlet>
 </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ModalCallback } from '../../models/modal-callback';
+import { ModalCallback } from '../models/modal-callback';
 
 @Injectable({
   providedIn: 'root'

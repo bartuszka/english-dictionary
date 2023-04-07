@@ -1,12 +1,20 @@
 {
   "root": true,
   "ignorePatterns": [
-    "projects/**/*"
+    "projects/**/*",
+    "*.js"
   ],
   "overrides": [
     {
+      "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      },
       "files": [
-        "*.ts", "*.js"
+        "*.ts"
       ],
       "extends": [
         "eslint:recommended",
@@ -35,7 +43,10 @@
         "indent": [
           "error",
           2,
-          { "ObjectExpression": "first" }
+          {
+            "ObjectExpression": "first",
+            "SwitchCase": 1
+          }
         ],
         "object-curly-spacing": [
           "error",

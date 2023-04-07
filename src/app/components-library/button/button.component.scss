@@ -1,7 +1,0 @@
-@import '../library-styles';
-@import '../library-button-styles';
-@import '../../../variables';
-
-:host {
-  @include buttons;
-}

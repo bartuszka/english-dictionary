@@ -1,0 +1,73 @@
+<form *ngIf="addWordForm" [formGroup]="addWordForm" (ngSubmit)="addWord()">
+  <fieldset>
+    <legend>Word</legend>
+
+    <div class="form-group">
+      <label for="name">Word</label>
+      <input id="name" name="name" type="text" formControlName="name">
+    </div>
+
+    <div class="form-group">
+      <label for="verbTypes">Word</label>
+      <input *ngIf="editedWord.wordType === wordTypes.VERB"
+             id="verbTypes"
+             type="text"
+             formControlName="verbTypes">
+    </div>
+
+    <input *ngIf="editedWord.wordType === wordTypes.NOUN"
+           type="text"
+           formControlName="nounTypes">
+    <input type="text"
+           formControlName="pronunciation">
+
+    <ng-container *ngIf="editedWord.wordType === wordTypes.VERB">
+      <input *ngIf="addWordForm.controls.secondForm"
+             type="text"
+             formControlName="secondForm">
+      <input *ngIf="addWordForm.controls.secondFormPronunciation"
+             type="text"
+             formControlName="secondFormPronunciation">
+      <input *ngIf="addWordForm.controls.thirdForm"
+             type="text"
+             formControlName="thirdForm">
+      <input *ngIf="addWordForm.controls.thirdFormPronunciation"
+             type="text"
+             formControlName="thirdFormPronunciation">
+    </ng-container>
+
+    <ng-container *ngIf="editedWord.wordType === wordTypes.NOUN">
+      <input *ngIf="addWordForm.controls.pluralForm"
+             type="text"
+             formControlName="pluralForm">
+      <input *ngIf="addWordForm.controls.pluralFormPronunciation"
+             type="text"
+             formControlName="pluralFormPronunciation">
+    </ng-container>
+  </fieldset>
+
+  <fieldset formArrayName="translations">
+    <legend>Usage</legend>
+    <ul>
+      <li *ngFor="let translation of addWordForm.controls.translations.controls | ngIterable; let i = index">
+        <div [formGroupName]="i">
+          <input *ngIf="(translation | contextWordTypeTransactionType).controls.contextWordType"
+                 type="text"
+                 formControlName="contextWordType">
+          <input *ngIf="translation.controls.useCase"
+                 type="text"
+                 formControlName="useCase">
+          <input type="text"
+                 formControlName="context">
+          <input type="text"
+                 formControlName="translation">
+          <input *ngIf="translation.controls.synonyms"
+                 type="text"
+                 formControlName="synonyms">
+        </div>
+      </li>
+    </ul>
+  </fieldset>
+
+  <button type="submit">Submit</button>
+</form>

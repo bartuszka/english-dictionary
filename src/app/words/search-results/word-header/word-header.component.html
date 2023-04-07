@@ -1,0 +1,38 @@
+<div class="title">
+  <div>
+    <h1>{{ word.name }}</h1>
+    <span>/{{ word.pronunciation }}/</span>
+
+    <span *ngIf="word | verbType as verb">
+      <span *ngIf="verb.verbTypes as verbTypes">
+        <span>({{ verbTypes | wordTypeShortcut }})</span>
+      </span>
+
+      <span *ngIf="verb.secondForm">
+        <span>[{{ verb.secondForm }}</span>
+        <span>/{{ verb.secondFormPronunciation }}/</span>
+      </span>
+
+      <span *ngIf="verb.thirdForm">
+        <span>| {{ verb.thirdForm }}</span>
+        <span>/{{ verb.thirdFormPronunciation }}/]</span>
+      </span>
+    </span>
+
+    <span *ngIf="word | nounType as noun">
+      <span *ngIf="noun.nounTypes as nounTypes">
+        <span>({{ nounTypes | wordTypeShortcut }})</span>
+      </span>
+      <span *ngIf="noun.pluralForm">[{{ noun.pluralForm }}</span>
+      <span *ngIf="noun.pluralFormPronunciation">/{{ noun.pluralFormPronunciation }}/]</span>
+    </span>
+  </div>
+
+  <div>
+    {{ word.wordType }}
+    <button class="clean-button"
+            (click)="editWord()">
+      <span class="material-symbols-outlined">edit_square</span>
+    </button>
+  </div>
+</div>

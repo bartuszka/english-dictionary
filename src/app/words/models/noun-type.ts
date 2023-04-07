@@ -1,0 +1,6 @@
+export enum NounType {
+  COUNTABLE = 'COUNTABLE',
+  UNCOUNTABLE = 'UNCOUNTABLE',
+  SINGULAR = 'SINGULAR',
+  PLURAL = 'PLURAL'
+}

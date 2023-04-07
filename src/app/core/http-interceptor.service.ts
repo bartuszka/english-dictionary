@@ -10,8 +10,8 @@ import {
 import { catchError, EMPTY, Observable, throwError } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { ErrorHandlingHttpParams } from '../models/error-handling-http-params';
-import { ErrorHandlingService } from '../shared/modules/error/error-handling.service';
+import { ErrorHandlingHttpParams } from '../error/models/error-handling-http-params';
+import { ErrorHandlingService } from '../error/error-handling.service';
 
 @Injectable({
   providedIn: 'root'

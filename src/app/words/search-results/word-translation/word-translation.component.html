@@ -1,0 +1,18 @@
+<div>
+  <ng-container *ngIf="translation | contextWordTypeTransactionType as translation">
+    <strong *ngIf="translation.contextWordType">
+      {{ translation.contextWordType | wordTypeShortcut }}:
+    </strong>
+  </ng-container>
+
+  <strong>{{ translation.useCase }}</strong>
+  <span>{{ translation.context }}</span>
+  <strong>= {{ translation.translation }}</strong>
+</div>
+
+<div *ngIf="translation.synonyms"
+     class="synonyms">
+  <strong>Synonyms</strong>
+  <br />
+  <span *ngFor="let synonym of translation.synonyms">{{ synonym }}</span>
+</div>

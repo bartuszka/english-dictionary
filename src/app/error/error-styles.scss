@@ -1,0 +1,27 @@
+@import 'bch-dc-styles';
+@import '../../icons';
+
+@include create-icon(0, 800, 0, 48) {
+  margin-right: 10px;
+  color: $color-error-red;
+  font-size: 40px;
+}
+
+hr {
+  margin: 15px 0;
+  border: none;
+  border-top: 1px solid $color-light-gray;
+}
+
+#error-description {
+  display: flex;
+  align-items: center;
+}
+
+#error-message {
+  margin-top: 10px;
+  width: 100%;
+  text-align: right;
+  color: $color-medium-gray;
+  font-size: $font-size-small;
+}

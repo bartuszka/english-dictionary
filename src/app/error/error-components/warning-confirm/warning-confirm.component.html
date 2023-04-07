@@ -1,0 +1,17 @@
+<app-general-error-template [title]="title"
+                            closeButtonMessage="Cancel"
+                            [customButtonsAlignRight]="true"
+                            (closed)="close()">
+  <div body>
+    <p id="error-description">
+      <span class="material-symbols-outlined">warning</span>
+      <span>{{ message }}</span>
+    </p>
+  </div>
+
+  <div footer>
+    <bch-dc-button message="Confirm"
+                   [colorMode]="colorModes.SECONDARY_DARK"
+                   (click)="confirm()"></bch-dc-button>
+  </div>
+</app-general-error-template>

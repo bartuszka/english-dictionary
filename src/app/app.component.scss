@@ -1,23 +1,13 @@
-@import '../breakpoints';
+@import 'bch-dc-styles';
 
 app-header {
   position: relative;
   z-index: 1001;
 }
 
-#container {
-  display: flex;
-
-  @include breakpoint-mobile {
-    display: block;
-  }
-
-  #content-container {
-    width: 100%;
-    z-index: 1;
-
-    @include breakpoint-mobile {
-      position: absolute;
-    }
-  }
+#content-container {
+  box-sizing: border-box;
+  height: calc(100vh - $header-height);
+  overflow: auto;
+  padding: 20px;
 }

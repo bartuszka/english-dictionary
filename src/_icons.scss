@@ -1,0 +1,11 @@
+@mixin create-icon($fill: 0, $wght: 400, $grad: 0, $opsz: 48) {
+  .material-symbols-outlined {
+    @content;
+
+    font-variation-settings:
+      'FILL' $fill,
+      'wght' $wght,
+      'GRAD' $grad,
+      'opsz' $opsz
+  }
+}
