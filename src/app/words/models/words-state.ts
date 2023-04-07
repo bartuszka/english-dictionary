@@ -1,4 +1,4 @@
-import { Word } from './word';
+import { Word } from './general-word';
 
 export interface WordsState {
   searchedWords: Word[];

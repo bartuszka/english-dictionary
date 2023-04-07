@@ -1,91 +1,68 @@
 import { Component, OnInit } from '@angular/core';
-import { WordType } from '../models/word-type';
-import { NounType } from '../models/noun-type';
 import { WordsStateService } from '../services/words-state.service';
-import { Observable, take } from 'rxjs';
-import { Word } from '../models/word';
+import { Observable, of } from 'rxjs';
+import { Word } from '../models/general-word';
 import { ErrorHandlingService } from '../../error/error-handling.service';
 import { Deactivable } from '../../shared/directives/deactivable';
 import { WarningMessages } from '../../error/models/warning-messages';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavigationLink } from '../../shared/models/navigation-link';
+import { WordForm } from '../models/add-word-form/word-form';
+import { AddWordFormService } from './add-word-form.service';
+import { WordType } from '../models/word-type';
 
 @Component({
   selector: 'app-add-word',
   templateUrl: './add-word.component.html',
-  styleUrls: ['./add-word.component.scss']
+  styleUrls: ['./add-word.component.scss'],
 })
 export class AddWordComponent extends Deactivable implements OnInit {
   public editedWord: Word;
+  public addWordForm: FormGroup<WordForm>;
+  public wordTypes: typeof WordType = WordType;
 
-  constructor(private wordsStateService: WordsStateService, private errorHandlingService: ErrorHandlingService) {
+  constructor(
+    private wordsStateService: WordsStateService,
+    private addWordFormService: AddWordFormService,
+    private errorHandlingService: ErrorHandlingService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {
     super();
   }
 
   public ngOnInit(): void {
-    this.wordsStateService.editedWord$
-      .pipe(take(1))
-      .subscribe(editedWord => this.editedWord = editedWord);
+    this.initializeEditedWord();
   }
 
   public confirmDeactivate(): Observable<boolean> {
-    this.errorHandlingService.showWarning(
-      WarningMessages.ADD_WORD_LEAVE_CONFIRM,
-      () => {
-        this.wordsStateService.dispatchSetEditWord(null);
-        this.canDeactivateSubject$.next(true);
-      }
-    );
+    if (!this.editedWord) {
+      return of(true);
+    }
+
+    this.errorHandlingService.showWarning(WarningMessages.ADD_WORD_LEAVE_CONFIRM, () => {
+      // this.wordsStateService.dispatchSetEditWord(null);
+      this.canDeactivateSubject$.next(true);
+    });
+
     return this.canDeactivate$;
   }
 
-  public backendTest() {
-    this.wordsStateService.dispatchAddWord({
-      id: '638349060',
-      wordType: WordType.NOUN,
-      nounTypes: [NounType.COUNTABLE],
-      name: 'puppy',
-      spelling: 'æmˈbɪʃən',
-      pluralForm: 'puppies',
-      pluralFormSpelling: 'æmˈbɪʃənz',
-      translations: [
-        {
-          contextWordType: NounType.COUNTABLE,
-          useCase: ' [+ of beeing/doing sth]:',
-          context: 'She has a lovely puppy. Hasn\'t she?',
-          translation: 'Szczeniak',
-        },
-        {
-          contextWordType: NounType.UNCOUNTABLE,
-          context: 'motivated by personal ambition',
-          translation: 'Szczeniakowość',
-        },
-      ]
-    }).subscribe();
+  public addWord(): void {
+    console.log('SUBMIT FORM', this.addWordForm.value, this.addWordForm);
+    console.log(this.addWordForm.controls.translations);
   }
 
-  public backendEditTest() {
-    const editedWord: Word = {
-      id: '638349060',
-      wordType: WordType.NOUN,
-      nounTypes: [NounType.COUNTABLE],
-      name: 'DUUUPPYYYY',
-      spelling: 'æmˈbɪʃən',
-      pluralForm: 'puppies',
-      pluralFormSpelling: 'æmˈbɪʃənz',
-      translations: [
-        {
-          contextWordType: NounType.COUNTABLE,
-          useCase: ' [+ of beeing/doing sth]:',
-          context: 'She has a lovely puppy. Hasn\'t she?',
-          translation: 'Szczeniak',
-        },
-        {
-          contextWordType: NounType.UNCOUNTABLE,
-          context: 'motivated by personal ambition',
-          translation: 'Szczeniakowość',
-        },
-      ]
-    }
+  private initializeEditedWord(): void {
+    const editedWordId: string = this.route.snapshot.params['id'];
 
-    this.wordsStateService.dispatchEditWord(editedWord).subscribe();
+    this.wordsStateService
+      .getWordFromState(editedWordId)
+      .subscribe((word: Word) =>
+        editedWordId && !word
+          ? this.router.navigate([`/${NavigationLink.SEARCH_RESULTS}`])
+          : (this.addWordForm = this.addWordFormService.createAddWordForm((this.editedWord = word))),
+      );
   }
 }

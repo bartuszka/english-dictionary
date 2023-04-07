@@ -7,7 +7,7 @@ const searchResultRoutes: Routes = [{
   path: '',
   component: SearchResultsComponent,
   resolve: {
-    words: () => inject(WordsStateService).dispatchGetWords()
+    words: () => inject(WordsStateService).initializeGetWords()
   }
 }];
 
@@ -19,6 +19,4 @@ const searchResultRoutes: Routes = [{
     RouterModule
   ]
 })
-export class SearchResultsRoutingModule {
-
-}
+export class SearchResultsRoutingModule {}

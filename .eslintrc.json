@@ -43,7 +43,10 @@
         "indent": [
           "error",
           2,
-          { "ObjectExpression": "first" }
+          {
+            "ObjectExpression": "first",
+            "SwitchCase": 1
+          }
         ],
         "object-curly-spacing": [
           "error",

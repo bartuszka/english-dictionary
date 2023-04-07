@@ -1,8 +1,7 @@
+@import 'bch-dc-styles';
 @import '../../../variables';
-@import '../../../styles';
-@import '../../../icons';
 
-#search-results-container {
+section {
   margin: 20px;
 
   ul, li {
@@ -11,67 +10,11 @@
   }
 
   li {
-    border: solid $dark-violet 1px;
+    border: solid $color-secondary-dark 1px;
     margin-bottom: 15px;
 
-    .title, .body {
+    .body {
       padding: $left-space-box-s $left-space-box-s;
-    }
-
-    .title {
-      display: flex;
-      justify-content: space-between;
-      background-color: $dark-blue;
-      color: white;
-
-      & span::before {
-        content: ' ';
-      }
-
-      h1, div {
-        display: inline;
-        font-size: $h2-font-size;
-        user-select: none;
-
-        &:last-child {
-          margin-left: 50px;
-        }
-      }
-
-      @include create-icon(0, 400, 0, 48) {
-        margin-left: 5px;
-        cursor: pointer;
-        color: $white-text;
-
-        &:hover {
-          color: $light-blue;
-        }
-
-        &:active {
-          color: $medium-blue;
-        }
-      }
-    }
-
-    .translation {
-      display: flex;
-      justify-content: space-between;
-      line-height: $text-line-height;
-
-      strong, span {
-        &::before {
-          content: ' ';
-        }
-      }
-
-      .synonyms {
-        margin-left: 50px;
-        text-align: right;
-        border: solid $light-blue 1px;
-        padding: 0 $left-space-box-xs;
-        border-radius: 7px;
-        max-width: 150px;
-      }
     }
   }
 }

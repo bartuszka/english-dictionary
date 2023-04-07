@@ -1,4 +1,4 @@
-@import '../../../variables';
+@import 'bch-dc-styles';
 
 :host {
   display: block;
@@ -21,17 +21,13 @@
 
       button {
         padding: 5px;
-        background-color: $medium-blue;
+        background-color: $color-primary-dark;
         color: white;
-        font-size: $text-font-size;
-      }
-
-      button:hover {
-        background-color: $dark-blue;
+        font-size: $font-size-normal;
       }
 
       button:active {
-        background-color: $medium-blue;
+        background-color: $color-primary-medium;
       }
     }
 
@@ -41,7 +37,7 @@
       overflow-x: hidden;
       margin-top: 20px;
       list-style-type: none;
-      background-color: $white-text;
+      background-color: $color-white;
       padding: 10px;
     }
 

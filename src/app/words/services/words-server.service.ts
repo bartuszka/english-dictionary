@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Word } from '../models/word';
+import { Word } from '../models/general-word';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

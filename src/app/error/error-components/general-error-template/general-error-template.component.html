@@ -13,8 +13,9 @@
          [ngClass]="{ 'align-right': customButtonsAlignRight }">
       <ng-content select="[footer]"></ng-content>
     </div>
-    <app-button [message]="closeButtonMessage"
-                (click)="closeSelected()">
-    </app-button>
+    <bch-dc-button [message]="closeButtonMessage"
+                   [colorMode]="colorModes.PRIMARY_DARK"
+                   (click)="closeSelected()">
+    </bch-dc-button>
   </footer>
 </section>

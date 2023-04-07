@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DoubleColorMode } from 'bch-dc-components';
 
 @Component({
   selector: 'app-general-error-template',
@@ -10,6 +11,8 @@ export class GeneralErrorTemplateComponent {
   @Input() public closeButtonMessage: string = 'Ok';
   @Input() public title: string = 'Title';
   @Output() public closed: EventEmitter<void> = new EventEmitter<void>();
+
+  public colorModes: typeof DoubleColorMode = DoubleColorMode;
 
   public closeSelected(): void {
     this.closed.emit();

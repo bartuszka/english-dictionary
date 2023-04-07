@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable, switchMap, take, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import * as WordsActions from '../word-store/words.actions';
 import { WordsState } from '../models/words-state';
-import { Word } from '../models/word';
+import { Word } from '../models/general-word';
 import { WordsServerService } from './words-server.service';
 import { AppState } from '../../app-state';
 
@@ -22,8 +22,16 @@ export class WordsStateService {
   ) {
     this.setWordsStream();
     this.setEditedWordStream();
-
     this.editedWord$.subscribe(data => console.log(data))
+  }
+
+  public initializeGetWords(): Observable<Word[]> {
+    return this.words$.pipe(
+      take(1),
+      switchMap((words: Word[]) => {
+        return words ? this.words$ : this.dispatchGetWords()
+      })
+    )
   }
 
   public dispatchGetWords(): Observable<Word[]> {
@@ -46,6 +54,14 @@ export class WordsStateService {
 
   public dispatchSetEditWord(word: Word): void {
     this.store.dispatch(new WordsActions.SetEditedWord(word));
+  }
+
+  public getWordFromState(wordIndex: string): Observable<Word> {
+    return this.words$.pipe(
+      map(
+        (words: Word[]) => words.find((word: Word) => word.id === wordIndex)
+      )
+    )
   }
 
   private setWordsStream(): void {

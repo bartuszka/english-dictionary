@@ -1,32 +1,38 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
 
-import { HeaderComponent } from '../header/header.component';
 import { HttpInterceptorService } from './http-interceptor.service';
 import { ErrorModule } from '../error/error.module';
-import { SideMenuModule } from '../side-menu/side-menu.module';
+import { SharedPipesModule } from '../shared/modules/shared-pipes.module';
+import { NgModule } from '@angular/core';
+import { BchDcHeaderModule, BchDcSideMenuModule } from 'bch-dc-components';
+import { SearchFiltersComponent } from '../filters/search-filters/search-filters.component';
+import { AddWordFiltersComponent } from '../filters/add-word-filters/add-word-filters.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     StoreModule,
+    BchDcHeaderModule
   ],
   declarations: [
-    HeaderComponent,
+    SearchFiltersComponent,
+    AddWordFiltersComponent
   ],
   exports: [
-    SideMenuModule,
     ErrorModule,
-    HeaderComponent,
+    SharedPipesModule,
+    BchDcHeaderModule,
+    BchDcSideMenuModule,
+    SearchFiltersComponent,
+    AddWordFiltersComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CoreModule {}

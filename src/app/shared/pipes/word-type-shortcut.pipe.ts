@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { VerbType } from '../models/verb-type';
-import { NounType } from '../models/noun-type';
+import { VerbType } from '../../words/models/verb-type';
+import { NounType } from '../../words/models/noun-type';
 
 @Pipe({
-  name: 'wordType'
+  name: 'wordTypeShortcut'
 })
-export class WordTypePipe implements PipeTransform {
+export class WordTypeShortcutPipe implements PipeTransform {
   transform(wordTypes: (VerbType | NounType)[] | string): string {
     if (Array.isArray(wordTypes)) {
       return wordTypes

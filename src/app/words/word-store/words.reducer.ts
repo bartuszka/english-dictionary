@@ -1,7 +1,7 @@
 import * as WordStateActions from './words.actions';
 
 import { WordsState } from '../models/words-state';
-import { Word } from '../models/word';
+import { Word } from '../models/general-word';
 
 const initialState: WordsState = {
   searchedWords: null,
@@ -10,40 +10,40 @@ const initialState: WordsState = {
 
 export function wordsReducer(state: WordsState = initialState, action: WordStateActions.WordActions): WordsState {
   switch (action.type) {
-  case WordStateActions.ADD_WORDS:
-    return {
-      ...state,
-      searchedWords: [...action.payload]
-    }
-  case WordStateActions.ADD_WORD:
-    return {
-      ...state,
-      searchedWords: [...state.searchedWords, { ...action.payload }]
-    };
-
-  case WordStateActions.EDIT_WORD: {
-    const updatedWords: Word[] = [...state.searchedWords];
-    const existingWordIndex: number = updatedWords.findIndex((word: Word) => word.id === action.payload.id);
-
-    if (existingWordIndex !== -1) {
-      updatedWords[existingWordIndex] = { ...action.payload }
-
+    case WordStateActions.ADD_WORDS:
       return {
         ...state,
-        searchedWords: updatedWords
+        searchedWords: [...action.payload]
+      }
+    case WordStateActions.ADD_WORD:
+      return {
+        ...state,
+        searchedWords: [...state.searchedWords, { ...action.payload }]
       };
+
+    case WordStateActions.EDIT_WORD: {
+      const updatedWords: Word[] = [...state.searchedWords];
+      const existingWordIndex: number = updatedWords.findIndex((word: Word) => word.id === action.payload.id);
+
+      if (existingWordIndex !== -1) {
+        updatedWords[existingWordIndex] = { ...action.payload }
+
+        return {
+          ...state,
+          searchedWords: updatedWords
+        };
+      }
+
+      return { ...state };
     }
 
-    return { ...state };
-  }
+    case WordStateActions.SET_EDITED_WORD:
+      return {
+        ...state,
+        editedWord: action.payload ? { ...action.payload } : null
+      }
 
-  case WordStateActions.SET_EDITED_WORD:
-    return {
-      ...state,
-      editedWord: action.payload ? { ...action.payload } : null
-    }
-
-  default:
-    return { ...state }
+    default:
+      return { ...state }
   }
 }

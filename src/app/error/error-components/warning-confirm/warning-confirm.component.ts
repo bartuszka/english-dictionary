@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
+import { DoubleColorMode } from 'bch-dc-components';
 
 @Component({
   selector: 'app-warning-confirm',
@@ -11,6 +12,7 @@ export class WarningConfirmComponent implements OnDestroy {
 
   public showConfirm: boolean;
   public title: string = 'Error';
+  public colorModes: typeof DoubleColorMode = DoubleColorMode;
 
   public close$;
   public confirm$;

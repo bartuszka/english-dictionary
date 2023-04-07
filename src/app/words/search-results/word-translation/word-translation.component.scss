@@ -1,0 +1,23 @@
+@import 'bch-dc-styles';
+@import '../../../../variables';
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  line-height: $text-line-height;
+
+  strong, span {
+    &::before {
+      content: ' ';
+    }
+  }
+
+  .synonyms {
+    margin-left: 50px;
+    text-align: right;
+    border: solid $color-primary-light 1px;
+    padding: 0 $left-space-box-xs;
+    border-radius: 7px;
+    max-width: 150px;
+  }
+}

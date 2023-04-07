@@ -10,6 +10,8 @@
   </div>
 
   <div footer>
-    <app-button message="Confirm" (click)="confirm()"></app-button>
+    <bch-dc-button message="Confirm"
+                   [colorMode]="colorModes.SECONDARY_DARK"
+                   (click)="confirm()"></bch-dc-button>
   </div>
 </app-general-error-template>

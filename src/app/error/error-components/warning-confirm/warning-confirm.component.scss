@@ -1,7 +1,7 @@
-@import '../../../../variables';
+@import 'bch-dc-styles';
 
 :host {
   .material-symbols-outlined {
-    color: $error-yellow;
+    color: $color-warning-yellow;
   }
 }

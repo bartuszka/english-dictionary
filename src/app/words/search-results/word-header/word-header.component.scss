@@ -1,0 +1,39 @@
+@import '../../../../variables';
+@import '../../../../icons';
+@import 'bch-dc-styles';
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  padding: $left-space-box-s $left-space-box-s;
+  background-color: $color-primary-dark;
+  color: white;
+
+  & span::before {
+    content: ' ';
+  }
+
+  h1, div {
+    display: inline;
+    font-size: $font-size-header-second;
+    user-select: none;
+
+    &:last-child {
+      margin-left: 50px;
+    }
+  }
+
+  @include create-icon(0, 400, 0, 48) {
+    margin-left: 5px;
+    cursor: pointer;
+    color: $color-white;
+
+    &:hover {
+      color: $color-primary-light;
+    }
+
+    &:active {
+      color: $color-primary-medium;
+    }
+  }
+}

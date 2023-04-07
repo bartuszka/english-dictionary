@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Word } from '../models/word';
+import { Word } from '../models/general-word';
 
 export const ADD_WORDS = '[Word] ADD_WORDS';
 export const ADD_WORD = '[Word] ADD_WORD';

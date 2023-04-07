@@ -20,6 +20,9 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     StoreModule.forRoot(reducers),
   ],
-  bootstrap: [AppComponent]
+  // providers: [
+  //   { provide: WORD_HANDLING_TOKEN, useClass: WordsServerService }
+  // ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

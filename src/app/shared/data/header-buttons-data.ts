@@ -1,7 +1,7 @@
-import { HeaderButton } from '../../header/models/header-button';
 import { NavigationLink } from '../models/navigation-link';
+import { BchDcHeaderButtonModel } from 'bch-dc-components';
 
-export const headerButtonsData: HeaderButton[] = [
+export const headerButtonsData: BchDcHeaderButtonModel[] = [
   {
     message: 'Search Results',
     url: NavigationLink.SEARCH_RESULTS

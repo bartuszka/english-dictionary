@@ -2,6 +2,7 @@ import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddWordComponent } from './add-word.component';
 import { WordsStateService } from '../services/words-state.service';
+import { AddWordFormService } from './add-word-form.service';
 
 const addWordRoutes: Routes = [
   {
@@ -9,7 +10,7 @@ const addWordRoutes: Routes = [
     component: AddWordComponent,
     canDeactivate: [(component: AddWordComponent) => component.confirmDeactivate()],
     resolve: {
-      editedWord: () => inject(WordsStateService).editedWord$
+      words: () => inject(WordsStateService).initializeGetWords()
     }
   }
 ]
@@ -20,6 +21,9 @@ const addWordRoutes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    AddWordFormService
   ]
 })
 export class AddWordRoutingModule {

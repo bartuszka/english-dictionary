@@ -4,7 +4,7 @@ import { NextFunction, Request, Response } from 'express';
 import express from 'express';
 
 import { words } from '../data/words';
-import { Word } from '../models/words/word';
+import { Word } from '../models/words/general-word';
 import errors from '../data/errors';
 import { ErrorName } from '../models/error/error-name';
 import { ListWord } from '../models/words/list-word';
