@@ -14,5 +14,6 @@ export class Destroyable implements OnDestroy {
 
   public ngOnDestroy(): void {
     this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 }

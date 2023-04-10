@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { map, Observable, switchMap, take, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import * as WordsActions from '../word-store/words.actions';
 import { WordsState } from '../models/words-state';
 import { Word } from '../models/general-word';
 import { WordsServerService } from './words-server.service';
 import { AppState } from '../../app-state';
+import { addWords } from '../word-store/words.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -22,45 +22,45 @@ export class WordsStateService {
   ) {
     this.setWordsStream();
     this.setEditedWordStream();
-    this.editedWord$.subscribe(data => console.log(data))
   }
 
   public initializeGetWords(): Observable<Word[]> {
     return this.words$.pipe(
-      take(1),
       switchMap((words: Word[]) => {
-        return words ? this.words$ : this.dispatchGetWords()
-      })
+        return words ? this.words$ : this.dispatchGetWords();
+      }),
+      take(1)
     )
   }
 
   public dispatchGetWords(): Observable<Word[]> {
     return this.wordsServerService.fetchWords().pipe(
-      tap((words: Word[]) => this.store.dispatch(new WordsActions.AddWords(words)))
+      // tap((words: Word[]) => this.store.dispatch(new WordsActions.AddWords(words)))
+      tap((words: Word[]) => this.store.dispatch(addWords({ words })))
     );
   }
 
-  public dispatchAddWord(word: Word): Observable<Word> {
-    return this.wordsServerService.addWord(word).pipe(
-      tap((word: Word) => this.store.dispatch(new WordsActions.AddWord(word)))
-    );
-  }
-
-  public dispatchEditWord(word: Word): Observable<Word> {
-    return this.wordsServerService.editWord(word).pipe(
-      tap((word: Word) => this.store.dispatch(new WordsActions.EditWord(word)))
-    );
-  }
-
-  public dispatchSetEditWord(word: Word): void {
-    this.store.dispatch(new WordsActions.SetEditedWord(word));
-  }
+  // public dispatchAddWord(word: Word): Observable<Word> {
+  //   return this.wordsServerService.addWord(word).pipe(
+  //     tap((word: Word) => this.store.dispatch(new WordsActions.AddWord(word)))
+  //   );
+  // }
+  //
+  // public dispatchEditWord(word: Word): Observable<Word> {
+  //   return this.wordsServerService.editWord(word).pipe(
+  //     tap((word: Word) => this.store.dispatch(new WordsActions.EditWord(word)))
+  //   );
+  // }
+  //
+  // public dispatchSetEditWord(word: Word): void {
+  //   this.store.dispatch(new WordsActions.SetEditedWord(word));
+  // }
 
   public getWordFromState(wordIndex: string): Observable<Word> {
-    return this.words$.pipe(
-      map(
-        (words: Word[]) => words.find((word: Word) => word.id === wordIndex)
-      )
+    return this.store.select('wordsState').pipe(
+      map((wordsState: WordsState) =>
+        wordsState.searchedWords.find((word: Word) => word.id === wordIndex)),
+      take(1)
     )
   }
 

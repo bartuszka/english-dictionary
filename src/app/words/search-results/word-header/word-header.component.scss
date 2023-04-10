@@ -23,6 +23,10 @@
     }
   }
 
+  #right-group {
+    white-space: nowrap;
+  }
+
   @include create-icon(0, 400, 0, 48) {
     margin-left: 5px;
     cursor: pointer;
