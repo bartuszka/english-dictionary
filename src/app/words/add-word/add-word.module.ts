@@ -5,12 +5,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContextWordTypeTransactionType } from './context-word-type-transaction-type';
 import { NgIterablePipe } from './ngIterable.pipe';
+import { BchDcInputModule } from 'bch-dc-components';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    AddWordRoutingModule
+    AddWordRoutingModule,
+    BchDcInputModule,
   ],
   declarations: [
     AddWordComponent,
