@@ -11,6 +11,11 @@ import { NavigationLink } from '../../shared/models/navigation-link';
 import { WordForm } from '../models/add-word-form/word-form';
 import { AddWordFormService } from './add-word-form.service';
 import { WordType } from '../models/word-type';
+import { NounType } from '../models/noun-type';
+import { VerbType } from '../models/verb-type';
+import { WordTypeShortcutPipe } from '../../shared/pipes/word-type-shortcut.pipe';
+import { allNounTypes } from './data/all-noun-types';
+import { allVerbTypes } from './data/all-verb-types';
 
 @Component({
   selector: 'app-add-word',
@@ -21,6 +26,8 @@ export class AddWordComponent extends Deactivable implements OnInit {
   public editedWord: Word;
   public addWordForm: FormGroup<WordForm>;
   public wordTypes: typeof WordType = WordType;
+  public allTypes: NounType[] | VerbType[];
+  public allTypeShortcuts: string[];
 
   constructor(
     private wordsStateService: WordsStateService,
@@ -28,12 +35,14 @@ export class AddWordComponent extends Deactivable implements OnInit {
     private errorHandlingService: ErrorHandlingService,
     private router: Router,
     private route: ActivatedRoute,
+    private wordTypeShortcutPipe: WordTypeShortcutPipe
   ) {
     super();
   }
 
   public ngOnInit(): void {
     this.initializeEditedWord();
+    this.setAllTypes();
   }
 
   public confirmDeactivate(): Observable<boolean> {
@@ -50,8 +59,8 @@ export class AddWordComponent extends Deactivable implements OnInit {
   }
 
   public addWord(): void {
-    console.log('SUBMIT FORM', this.addWordForm.value, this.addWordForm);
-    console.log(this.addWordForm.controls.translations);
+    // console.log('SUBMIT FORM', this.addWordForm.value, this.addWordForm);
+    // console.log(this.addWordForm.controls.translations);
   }
 
   private initializeEditedWord(): void {
@@ -64,5 +73,20 @@ export class AddWordComponent extends Deactivable implements OnInit {
           ? this.router.navigate([`/${NavigationLink.SEARCH_RESULTS}`])
           : (this.addWordForm = this.addWordFormService.createAddWordForm((this.editedWord = word))),
       );
+  }
+
+  private setAllTypes(): void {
+    switch (this.editedWord.wordType) {
+      case WordType.VERB:
+        this.allTypes = allVerbTypes;
+        this.allTypeShortcuts = allVerbTypes.map((verbType: VerbType) => this.wordTypeShortcutPipe.transform(verbType));
+        break;
+      case WordType.NOUN:
+        this.allTypes = allNounTypes;
+        this.allTypeShortcuts = allNounTypes.map((nounType: NounType) => this.wordTypeShortcutPipe.transform(nounType));
+        break;
+      default:
+        // Do Nothing
+    }
   }
 }

@@ -32,7 +32,7 @@ export const words: Word[] = [
   {
     id: '562049346',
     wordType: WordType.NOUN,
-    nounTypes: [NounType.COUNTABLE, NounType.UNCOUNTABLE],
+    nounTypes: [NounType.COUNTABLE, NounType.SINGULAR],
     name: 'ambition',
     pronunciation: 'æmˈbɪʃən',
     pluralForm: 'ambitions',

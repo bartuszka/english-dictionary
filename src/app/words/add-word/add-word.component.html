@@ -7,17 +7,17 @@
                   labelMessage="Name"
                   formControlName="name"></bch-dc-input>
 
-    <bch-dc-input *ngIf="editedWord.wordType === wordTypes.VERB"
-                  type="text"
-                  idForLabel="verbTypes"
-                  labelMessage="Type"
-                  formControlName="verbTypes"></bch-dc-input>
+    <bch-dc-select-buttons *ngIf="editedWord.wordType === wordTypes.VERB"
+                           labelMessage="Verb Type"
+                           [availableValues]="allTypes"
+                           [buttonMessages]="allTypeShortcuts"
+                           formControlName="verbTypes"></bch-dc-select-buttons>
 
-    <bch-dc-input *ngIf="editedWord.wordType === wordTypes.NOUN"
-                  type="text"
-                  labelMessage="Type"
-                  idForLabel="nounTypes"
-                  formControlName="nounTypes"></bch-dc-input>
+    <bch-dc-select-buttons *ngIf="editedWord.wordType === wordTypes.NOUN"
+                           labelMessage="Noun Type"
+                           [availableValues]="allTypes"
+                           [buttonMessages]="allTypeShortcuts"
+                           formControlName="nounTypes"></bch-dc-select-buttons>
 
     <bch-dc-input type="text"
                   labelMessage="Pronunciation"

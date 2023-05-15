@@ -10,18 +10,8 @@ import { WordTranslationComponent } from './word-translation/word-translation.co
 import { WordHeaderComponent } from './word-header/word-header.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SearchResultsRoutingModule,
-  ],
-  declarations: [
-    SearchResultsComponent,
-    WordHeaderComponent,
-    WordTranslationComponent,
-    WordTypeShortcutPipe,
-    NounTypePipe,
-    VerbTypePipe,
-    ContextWordTypeTransactionTypePipe,
-  ]
+  imports: [CommonModule, SearchResultsRoutingModule],
+  exports: [WordTypeShortcutPipe],
+  declarations: [SearchResultsComponent, WordHeaderComponent, WordTranslationComponent, WordTypeShortcutPipe, NounTypePipe, VerbTypePipe, ContextWordTypeTransactionTypePipe],
 })
 export class SearchResultsModule {}

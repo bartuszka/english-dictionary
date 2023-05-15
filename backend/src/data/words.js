@@ -33,7 +33,7 @@ exports.words = [
     {
         id: '562049346',
         wordType: word_type_1.WordType.NOUN,
-        nounTypes: [noun_type_1.NounType.COUNTABLE, noun_type_1.NounType.UNCOUNTABLE],
+        nounTypes: [noun_type_1.NounType.COUNTABLE, noun_type_1.NounType.SINGULAR],
         name: 'ambition',
         pronunciation: 'æmˈbɪʃən',
         pluralForm: 'ambitions',

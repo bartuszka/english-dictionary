@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContextWordTypeTransactionType } from './context-word-type-transaction-type';
 import { NgIterablePipe } from './ngIterable.pipe';
-import { BchDcInputModule } from 'bch-dc-components';
+import { BchDcInputModule, BchDcSelectButtonsModule } from 'bch-dc-components';
+import { WordTypeShortcutPipe } from '../../shared/pipes/word-type-shortcut.pipe';
 
 @NgModule({
   imports: [
@@ -13,11 +14,15 @@ import { BchDcInputModule } from 'bch-dc-components';
     ReactiveFormsModule,
     AddWordRoutingModule,
     BchDcInputModule,
+    BchDcSelectButtonsModule,
   ],
   declarations: [
     AddWordComponent,
     ContextWordTypeTransactionType,
-    NgIterablePipe
+    NgIterablePipe,
   ],
+  providers: [
+    WordTypeShortcutPipe
+  ]
 })
 export class AddWordModule {}
