@@ -1,0 +1,93 @@
+@mixin grid($screen-size: null, $columns) {
+  $partial-class-name: if($screen-size, -#{$screen-size}, '');
+
+  .col#{$partial-class-name}-hide {
+    display: none;
+  }
+
+  .col#{$partial-class-name}-show {
+    display: block;
+  }
+
+  @for $i from 1 through $columns {
+    .col {
+      @if $screen-size {
+        @include col-config(-#{$screen-size}, $i, $columns)
+      } @else {
+        @include col-config('', $i, $columns)
+      }
+    }
+  }
+}
+
+@mixin col-config($partial-class-name, $col-span, $columns) {
+  $cell-width-unit: calc(100% / $columns);
+
+  &.col#{$partial-class-name}-#{$col-span} {
+    flex-basis: calc($cell-width-unit * $col-span);
+    max-width: calc($cell-width-unit * $col-span);
+  }
+}
+
+@mixin grid-media($columns, $min-width: 0, $class-name: null) {
+  @media(min-width: $min-width + 'px') {
+    @include grid($class-name, $columns);
+  }
+}
+
+@mixin breakpoint-medium() {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin breakpoint-small() {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin grid-media-custom-col-number($columns: 12) {
+  @include grid-media($columns);
+  @include grid-media($columns, 576, 'sm');
+  @include grid-media($columns, 768, 'md');
+  @include grid-media($columns, 992, 'lg');
+  @include grid-media($columns, 1200, 'xl');
+  @include grid-media($columns, 1400, 'xxl');
+}
+
+@mixin row-configuration($columns, $col-gap: 0) {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    width: inherit;
+
+    &.row-center {
+      justify-content: center;
+    }
+
+    &.row-right {
+      justify-content: flex-end;
+    }
+
+    .col {
+      box-sizing: border-box;
+      transition: all ease-out .2s;
+      padding: 0 $col-gap;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .row-#{$columns} {
+    @include grid-media-custom-col-number($columns);
+  }
+}
+
+@include row-configuration(12);

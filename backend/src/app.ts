@@ -21,7 +21,7 @@ expressApp.use((req: Request, res: Response, next: NextFunction) => {
 
 expressApp.use(wordsRouter);
 
-expressApp.use((error: HttpErrorResponse, req: Request, res: Response, next: NextFunction) => {
+expressApp.use((error: HttpErrorResponse, req: Request, res: Response, next: NextFunction) => {                         // eslint-disable-line @typescript-eslint/no-unused-vars
   res.status(error.status).json(error);
 });
 

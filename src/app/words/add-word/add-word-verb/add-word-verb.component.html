@@ -1,0 +1,71 @@
+<div [formGroup]="verbForm">
+  <div id="word-type-select-container" class="row row-8 row-center">
+    <bch-dc-triangle-select class="col col-12 col-hide col-lg-show"
+                            [availableValues]="allWordTypes"
+                            [buttonMessages]="allWordTypeMessages"
+                            formControlName="wordType">
+    </bch-dc-triangle-select>
+
+    <bch-dc-triangle-select class="col col-12 col-hide col-sm-show col-lg-hide"
+                            [sizeWidth]="150"
+                            [availableValues]="allWordTypes"
+                            [buttonMessages]="allWordTypeMessages"
+                            formControlName="wordType">
+    </bch-dc-triangle-select>
+
+    <bch-dc-triangle-select class="col col-12 col-show col-sm-hide"
+                            [sizeWidth]="100"
+                            [availableValues]="allWordTypes"
+                            [buttonMessages]="allWordTypeMessages"
+                            formControlName="wordType">
+    </bch-dc-triangle-select>
+  </div>
+
+  <h2>Word</h2>
+
+  <div class="row row-8">
+    <bch-dc-input [attr.class]="verbColClasses"
+                  [value]="verbForm.get('wordType').value"
+                  type="text"
+                  idForLabel="name"
+                  labelMessage="Type"></bch-dc-input>
+
+    <bch-dc-input [attr.class]="verbColClasses"
+                  type="text"
+                  idForLabel="name"
+                  labelMessage="Name"
+                  formControlName="name"></bch-dc-input>
+
+    <bch-dc-select-buttons [attr.class]="verbColClasses"
+                           labelMessage="Verb Type"
+                           [availableValues]="allTypes"
+                           [buttonMessages]="allTypeShortcuts"
+                           formControlName="verbTypes"></bch-dc-select-buttons>
+
+    <bch-dc-input [attr.class]="verbColClasses"
+                  type="text"
+                  labelMessage="Pronunciation"
+                  idForLabel="pronunciation"
+                  formControlName="pronunciation"></bch-dc-input>
+
+    <bch-dc-input [attr.class]="verbColClasses"
+                  labelMessage="Second form"
+                  idForLabel="secondForm"
+                  formControlName="secondForm"></bch-dc-input>
+
+    <bch-dc-input [attr.class]="verbColClasses"
+                  labelMessage="S.F. Pronunciation"
+                  idForLabel="secondFormPronunciation"
+                  formControlName="secondFormPronunciation"></bch-dc-input>
+
+    <bch-dc-input [attr.class]="verbColClasses"
+                  labelMessage="Third Form"
+                  idForLabel="thirdForm"
+                  formControlName="thirdForm"></bch-dc-input>
+
+    <bch-dc-input [attr.class]="verbColClasses"
+                  labelMessage="T.F. Pronunciation"
+                  idForLabel="thirdFormPronunciation"
+                  formControlName="thirdFormPronunciation"></bch-dc-input>
+  </div>
+</div>

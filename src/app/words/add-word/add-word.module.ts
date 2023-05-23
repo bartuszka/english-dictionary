@@ -3,10 +3,22 @@ import { AddWordComponent } from './add-word.component';
 import { AddWordRoutingModule } from './add-word-routing.module';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ContextWordTypeTransactionType } from './context-word-type-transaction-type';
-import { NgIterablePipe } from './ngIterable.pipe';
-import { BchDcInputModule, BchDcSelectButtonsModule } from 'bch-dc-components';
+import { ContextWordTypeTransactionTypePipe } from './pipes/context-word-type-transaction-type.pipe';
+import { NgIterablePipe } from './pipes/ngIterable.pipe';
+import {
+  BchDcButtonModule,
+  BchDcInputModule,
+  BchDcOptionBoxModule,
+  BchDcSelectButtonModule,
+  BchDcSelectButtonsModule,
+  BchDcTriangleSelectModule,
+} from 'bch-dc-components';
 import { WordTypeShortcutPipe } from '../../shared/pipes/word-type-shortcut.pipe';
+import { AddWordNounComponent } from './add-word-noun/add-word-noun.component';
+import { AddWordVerbComponent } from './add-word-verb/add-word-verb.component';
+import { AddWordOtherComponent } from './add-word-other/add-word-other.component';
+import { AddWordTransitionComponent } from './add-word-transition/add-word-transition.component';
+import { AddWordFormService } from './services/add-word-form.service';
 
 @NgModule({
   imports: [
@@ -15,13 +27,22 @@ import { WordTypeShortcutPipe } from '../../shared/pipes/word-type-shortcut.pipe
     AddWordRoutingModule,
     BchDcInputModule,
     BchDcSelectButtonsModule,
+    BchDcSelectButtonModule,
+    BchDcOptionBoxModule,
+    BchDcTriangleSelectModule,
+    BchDcButtonModule,
   ],
   declarations: [
     AddWordComponent,
-    ContextWordTypeTransactionType,
+    ContextWordTypeTransactionTypePipe,
     NgIterablePipe,
+    AddWordNounComponent,
+    AddWordVerbComponent,
+    AddWordOtherComponent,
+    AddWordTransitionComponent,
   ],
   providers: [
+    AddWordFormService,
     WordTypeShortcutPipe
   ]
 })

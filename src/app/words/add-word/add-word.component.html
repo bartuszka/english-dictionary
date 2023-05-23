@@ -1,99 +1,37 @@
-<form *ngIf="addWordForm" [formGroup]="addWordForm" (ngSubmit)="addWord()">
-  <fieldset>
-    <legend>Word</legend>
+<form *ngIf="verbWithTranslationsForm || nounWithTranslationsForm || otherWordWithTranslationsForm as wordWithTranslationsForm"
+      [formGroup]="wordWithTranslationsForm"
+      (ngSubmit)="addWord()">
 
-    <bch-dc-input type="text"
-                  idForLabel="name"
-                  labelMessage="Name"
-                  formControlName="name"></bch-dc-input>
+  <app-add-word-verb *ngIf="editedWord.wordType === wordTypes.VERB"
+                     [verbForm]="verbFormGroup"
+                     formGroupName="verbDataForm"></app-add-word-verb>
+  <app-add-word-noun *ngIf="editedWord.wordType === wordTypes.NOUN"
+                     [nounForm]="nounFormGroup"
+                     formGroupName="nounDataForm"></app-add-word-noun>
+  <app-add-word-other *ngIf="editedWord.wordType === wordTypes.OTHER"
+                      [otherWordForm]="otherWordFormGroup"
+                      formGroupName="otherWordDataForm"></app-add-word-other>
 
-    <bch-dc-select-buttons *ngIf="editedWord.wordType === wordTypes.VERB"
-                           labelMessage="Verb Type"
-                           [availableValues]="allTypes"
-                           [buttonMessages]="allTypeShortcuts"
-                           formControlName="verbTypes"></bch-dc-select-buttons>
+  <app-add-word-transition *ngIf="editedWord.wordType === wordTypes.VERB"
+                           [wordWithTranslationsForm]="verbWithTranslationsForm"
+                           [wordType]="wordTypes.VERB"></app-add-word-transition>
 
-    <bch-dc-select-buttons *ngIf="editedWord.wordType === wordTypes.NOUN"
-                           labelMessage="Noun Type"
-                           [availableValues]="allTypes"
-                           [buttonMessages]="allTypeShortcuts"
-                           formControlName="nounTypes"></bch-dc-select-buttons>
+  <app-add-word-transition *ngIf="editedWord.wordType === wordTypes.NOUN"
+                           [wordWithTranslationsForm]="nounWithTranslationsForm"
+                           [wordType]="wordTypes.NOUN"></app-add-word-transition>
 
-    <bch-dc-input type="text"
-                  labelMessage="Pronunciation"
-                  idForLabel="pronunciation"
-                  formControlName="pronunciation"></bch-dc-input>
+  <app-add-word-transition *ngIf="editedWord.wordType === wordTypes.OTHER"
+                           [wordWithTranslationsForm]="otherWordWithTranslationsForm"
+                           [wordType]="wordTypes.OTHER"></app-add-word-transition>
 
-    <ng-container *ngIf="editedWord.wordType === wordTypes.VERB">
-      <bch-dc-input *ngIf="addWordForm.controls.secondForm"
-                    labelMessage="Second form"
-                    idForLabel="secondForm"
-                    formControlName="secondForm"></bch-dc-input>
+  <div id="buttons-container">
+    <bch-dc-button type="submit"
+                   [message]="'Update'"
+                   [colorMode]="colorModes.PRIMARY_DARK">
+    </bch-dc-button>
 
-      <bch-dc-input *ngIf="addWordForm.controls.secondForm"
-                    labelMessage="Second form"
-                    idForLabel="secondForm"
-                    formControlName="secondForm"></bch-dc-input>
-
-      <bch-dc-input *ngIf="addWordForm.controls.secondFormPronunciation"
-                    labelMessage="S.F. Pronunciation"
-                    idForLabel="secondFormPronunciation"
-                    formControlName="secondFormPronunciation"></bch-dc-input>
-
-      <bch-dc-input *ngIf="addWordForm.controls.thirdForm"
-                    labelMessage="Third Form"
-                    idForLabel="thirdForm"
-                    formControlName="thirdForm"></bch-dc-input>
-
-      <bch-dc-input *ngIf="addWordForm.controls.thirdFormPronunciation"
-                    labelMessage="T.F. Pronunciation"
-                    idForLabel="thirdFormPronunciation"
-                    formControlName="thirdFormPronunciation"></bch-dc-input>
-    </ng-container>
-
-    <ng-container *ngIf="editedWord.wordType === wordTypes.NOUN">
-      <bch-dc-input *ngIf="addWordForm.controls.pluralForm"
-                    labelMessage="Plural form"
-                    idForLabel="pluralForm"
-                    formControlName="pluralForm"></bch-dc-input>
-
-      <bch-dc-input *ngIf="addWordForm.controls.pluralFormPronunciation"
-                    labelMessage="P.F. Pronunciation"
-                    idForLabel="pluralFormPronunciation"
-                    formControlName="pluralFormPronunciation"></bch-dc-input>
-    </ng-container>
-  </fieldset>
-
-  <fieldset formArrayName="translations">
-    <legend>Usage</legend>
-
-    <ul>
-      <li *ngFor="let translation of addWordForm.controls.translations.controls | ngIterable; let i = index" [formGroupName]="i">
-        <bch-dc-input *ngIf="(translation | contextWordTypeTransactionType).controls.contextWordType"
-                      labelMessage="Context Word Type"
-                      idForLabel="contextWordType"
-                      formControlName="contextWordType"></bch-dc-input>
-
-        <bch-dc-input *ngIf="translation.controls.useCase"
-                      labelMessage="Use Case"
-                      idForLabel="useCase"
-                      formControlName="useCase"></bch-dc-input>
-
-        <bch-dc-input labelMessage="Context"
-                      idForLabel="context"
-                      formControlName="context"></bch-dc-input>
-
-        <bch-dc-input labelMessage="Translation"
-                      idForLabel="translation"
-                      formControlName="translation"></bch-dc-input>
-
-        <bch-dc-input *ngIf="translation.controls.synonyms"
-                      labelMessage="Synonyms"
-                      idForLabel="synonyms"
-                      formControlName="synonyms"></bch-dc-input>
-      </li>
-    </ul>
-  </fieldset>
-
-  <button type="submit">Submit</button>
+    <bch-dc-button [message]="'Cancel'"
+                   [colorMode]="colorModes.SECONDARY_DARK">
+    </bch-dc-button>
+  </div>
 </form>

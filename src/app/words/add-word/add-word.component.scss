@@ -1,27 +1,10 @@
-@import 'bch-dc-styles';
+form {
+  overflow: hidden;
 
-fieldset {
-  margin-bottom: 30px;
-  padding: 10px 20px 20px;
-  border: solid $color-primary-light 1px;
-  display: flex;
-
-  bch-dc-input {
-    width: 100%;
-  }
-
-  legend {
-    font-size: $font-size-header-second;
-    padding: 0 10px;
-    color: $color-primary-medium;
-  }
-
-  ul {
-    list-style-type: none;
-    width: 100%;
-
-    li {
-      display: flex;
-    }
+  #buttons-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
   }
 }
+

@@ -1,0 +1,41 @@
+<div [formGroup]="wordWithTranslationsForm">
+  <h2>Usage</h2>
+
+  <ul formArrayName="translations">
+    <li *ngFor="let translation of translationsFormArray.controls | ngIterable; let i = index"
+        [formGroupName]="i">
+
+      <h3>Example {{ i + 1 }}</h3>
+
+      <div [attr.class]="translationRowClasses">
+        <bch-dc-select-button *ngIf="(translation | contextWordTypeTransactionType).controls.contextWordType"
+                              [attr.class]="translationColClasses"
+                              formControlName="contextWordType"
+                              labelMessage="Word Type"
+                              [availableValues]="allTypes"
+                              [buttonMessages]="allTypeShortcuts"></bch-dc-select-button>
+
+        <bch-dc-input *ngIf="translation.controls.useCase"
+                      [attr.class]="translationColClasses"
+                      labelMessage="Use Case"
+                      idForLabel="useCase"
+                      formControlName="useCase"></bch-dc-input>
+
+        <bch-dc-input [attr.class]="translationColClasses"
+                      labelMessage="Context"
+                      idForLabel="context"
+                      formControlName="context"></bch-dc-input>
+
+        <bch-dc-input [attr.class]="translationColClasses"
+                      labelMessage="Translation"
+                      idForLabel="translation"
+                      formControlName="translation"></bch-dc-input>
+
+        <bch-dc-option-box *ngIf="translation.controls.synonyms"
+                           [attr.class]="translationColClasses"
+                           labelMessage="Synonyms"
+                           formControlName="synonyms"></bch-dc-option-box>
+      </div>
+    </li>
+  </ul>
+</div>

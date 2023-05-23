@@ -1,11 +1,12 @@
-import { Word } from '../../../../backend/src/models/words/general-word';
-import { WordType } from '../../../../backend/src/models/words/word-type';
-import { VerbType } from '../../../../backend/src/models/words/verb-type';
-import { NounType } from '../../../../backend/src/models/words/noun-type';
 import { HttpErrorResponse } from '@angular/common/http';
+
 import { Verb } from '../../words/models/verb';
 import { Noun } from '../../words/models/noun';
 import { OtherWord } from '../../words/models/other-word';
+import { Word } from '../../words/models/general-word';
+import { WordType } from '../../words/models/word-type';
+import { VerbType } from '../../words/models/verb-type';
+import { NounType } from '../../words/models/noun-type';
 
 const _testWords: Word[] = [
   {

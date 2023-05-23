@@ -1,0 +1,5 @@
+@import 'bch_dc_grid';
+
+:host {
+  @include row-configuration(6);
+}

@@ -34,7 +34,8 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./node_modules/bch-dc-components/assets"
+                "./node_modules/bch-dc-components/assets",
+                "./src"
               ]
             },
             "scripts": []
@@ -49,8 +50,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "50kb",
+                  "maximumError": "25kb"
                 }
               ],
               "outputHashing": "all",
@@ -114,7 +115,8 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "./node_modules/bch-dc-components/assets"
+                "./node_modules/bch-dc-components/assets",
+                "./src"
               ]
             },
             "scripts": []

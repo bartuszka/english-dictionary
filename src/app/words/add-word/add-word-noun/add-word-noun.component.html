@@ -1,0 +1,63 @@
+<div [formGroup]="nounForm">
+  <div id="word-type-select-container" class="row row-6 row-center">
+    <bch-dc-triangle-select class="col col-12 col-hide col-lg-show"
+                            [availableValues]="allWordTypes"
+                            [buttonMessages]="allWordTypeMessages"
+                            formControlName="wordType">
+    </bch-dc-triangle-select>
+
+    <bch-dc-triangle-select class="col col-12 col-hide col-sm-show col-lg-hide"
+                            [sizeWidth]="150"
+                            [availableValues]="allWordTypes"
+                            [buttonMessages]="allWordTypeMessages"
+                            formControlName="wordType">
+    </bch-dc-triangle-select>
+
+    <bch-dc-triangle-select class="col col-12 col-show col-sm-hide"
+                            [sizeWidth]="100"
+                            [availableValues]="allWordTypes"
+                            [buttonMessages]="allWordTypeMessages"
+                            formControlName="wordType">
+    </bch-dc-triangle-select>
+  </div>
+
+  <h2>Word</h2>
+
+  <div class="content row row-6">
+    <bch-dc-input [attr.class]="nounColClasses"
+                  [value]="nounForm.get('wordType').value"
+                  type="text"
+                  idForLabel="name"
+                  labelMessage="Type"></bch-dc-input>
+
+    <bch-dc-input [attr.class]="nounColClasses"
+                  type="text"
+                  idForLabel="name"
+                  labelMessage="Name"
+                  formControlName="name"></bch-dc-input>
+
+    <bch-dc-select-buttons [attr.class]="nounColClasses"
+                           labelMessage="Noun Type"
+                           [availableValues]="allTypes"
+                           [buttonMessages]="allTypeShortcuts"
+                           formControlName="nounTypes"></bch-dc-select-buttons>
+
+    <bch-dc-input [attr.class]="nounColClasses"
+                  type="text"
+                  labelMessage="Pronunciation"
+                  idForLabel="pronunciation"
+                  formControlName="pronunciation"></bch-dc-input>
+
+    <bch-dc-input [attr.class]="nounColClasses"
+                  type="text"
+                  labelMessage="Plural form"
+                  idForLabel="pluralForm"
+                  formControlName="pluralForm"></bch-dc-input>
+
+    <bch-dc-input [attr.class]="nounColClasses"
+                  type="text"
+                  labelMessage="P.F. Pronunciation"
+                  idForLabel="pluralFormPronunciation"
+                  formControlName="pluralFormPronunciation"></bch-dc-input>
+  </div>
+</div>

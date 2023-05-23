@@ -2,9 +2,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import {
-  GeneralWordTranslationFormGroup, NounTranslationFormGroup, VerbTranslationFormGroup,
+  GeneralWordTranslationFormGroup,
+  NounTranslationFormGroup,
+  VerbTranslationFormGroup,
   WordTranslationFormGroup
-} from '../models/add-word-form/translation-form-group';
+} from '../../models/add-word-form/translation-form.models';
 
 @Pipe({
   name: 'ngIterable'

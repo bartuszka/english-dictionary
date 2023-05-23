@@ -1,0 +1,5 @@
+@import '../../../../../../node_modules/bch-dc-components/assets/bch_dc_grid';
+
+:host {
+  @include row-configuration(3);
+}

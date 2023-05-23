@@ -6,5 +6,5 @@ var WordType;
     WordType["VERB"] = "VERB";
     WordType["NOUN"] = "NOUN";
     WordType["OTHER"] = "OTHER";
-    WordType["CONSTRUCTION"] = "CONSTRUCTION";
+    WordType["CONST"] = "CONST";
 })(WordType = exports.WordType || (exports.WordType = {}));
