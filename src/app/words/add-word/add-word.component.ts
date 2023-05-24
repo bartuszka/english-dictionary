@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WordsStateService } from '../services/words-state.service';
 import { Observable, of } from 'rxjs';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Word } from '../models/general-word';
@@ -11,14 +11,24 @@ import { WarningMessages } from '../../error/models/warning-messages';
 import { NavigationLink } from '../../shared/models/navigation-link';
 import {
   GeneralWordWithTranslationsFormType,
-  NounForm, NounWithTranslationsForm,
-  OtherWordForm, OtherWordWithTranslationsForm,
+  NounForm,
+  NounWithTranslationsForm,
+  OtherWordForm,
+  OtherWordWithTranslationsForm,
   VerbForm,
   VerbWithTranslationsForm,
 } from '../models/add-word-form/word-form.models';
 import { AddWordFormService } from './services/add-word-form.service';
 import { WordType } from '../models/word-type';
 import { DoubleColorMode } from 'bch-dc-components';
+import { emptyVerb } from './data/empty-verb';
+import { emptyNoun } from './data/empty-noun';
+import { emptyOtherWord } from './data/empty-other-word';
+import { emptyVerbTranslation } from './data/empty-verb-translation';
+import { emptyNounTranslation } from './data/empty-noun-translation';
+import { emptyOtherWordTranslation } from './data/empty-other-word-translation';
+import { AddWordMode } from '../models/add-word-mode.model';
+import { allWordTypes } from './data/all-word-types';
 
 @Component({
   selector: 'app-add-word',
@@ -28,6 +38,10 @@ import { DoubleColorMode } from 'bch-dc-components';
 export class AddWordComponent extends Deactivable implements OnInit {
   public editedWord: Word;
   public wordTypes: typeof WordType = WordType;
+  public mode: AddWordMode;
+  public modes: typeof AddWordMode = AddWordMode;
+  public allWordTypes: WordType[];
+  public allWordTypeMessages: string[];
 
   public verbFormGroup: FormGroup<VerbForm>;
   public nounFormGroup: FormGroup<NounForm>;
@@ -36,6 +50,7 @@ export class AddWordComponent extends Deactivable implements OnInit {
   public verbWithTranslationsForm: FormGroup<VerbWithTranslationsForm>;
   public nounWithTranslationsForm: FormGroup<NounWithTranslationsForm>;
   public otherWordWithTranslationsForm: FormGroup<OtherWordWithTranslationsForm>;
+  public handledWordForm: GeneralWordWithTranslationsFormType;
 
   public colorModes: typeof DoubleColorMode = DoubleColorMode;
 
@@ -50,7 +65,9 @@ export class AddWordComponent extends Deactivable implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.setAllWordTypes();
     this.initializeWordForm();
+    this.setHandledForm();
   }
 
   public confirmDeactivate(): Observable<boolean> {
@@ -66,20 +83,39 @@ export class AddWordComponent extends Deactivable implements OnInit {
   }
 
   public addWord(): void {
-    const handledForm: GeneralWordWithTranslationsFormType = this.getHandledForm();
+    const handledForm: GeneralWordWithTranslationsFormType = this.handledWordForm;
     console.log('SUBMIT FORM', handledForm.value);
+  }
+
+  public removeTransition(transitionIndex: number): void {
+    (this.handledWordForm.controls.translations as FormArray).removeAt(transitionIndex);
+  }
+
+  public addTranslation(): void {
+    switch (this.editedWord.wordType) {
+      case WordType.VERB:
+        (this.handledWordForm.controls.translations as FormArray).push(this.addWordFormService.getVerbTransitionExampleFormGroup(emptyVerbTranslation));
+        break;
+      case WordType.NOUN:
+        (this.handledWordForm.controls.translations as FormArray).push(this.addWordFormService.getNounTransitionExampleFormGroup(emptyNounTranslation));
+        break;
+      default:
+        (this.handledWordForm.controls.translations as FormArray).push(this.addWordFormService.getOtherWordTransitionExampleFormGroup(emptyOtherWordTranslation));
+        break;
+    }
   }
 
   private initializeWordForm(): void {
     const editedWordId: string = this.route.snapshot.params['id'];
 
-    this.wordsStateService
-      .getWordFromState(editedWordId)
-      .subscribe((word: Word) =>
-        editedWordId && !word
-          ? this.router.navigate([`/${NavigationLink.SEARCH_RESULTS}`])
-          : this.setProperWordForms(word),
-      );
+    this.wordsStateService.getWordFromState(editedWordId).subscribe((word: Word) => {
+      if (editedWordId && !word) {
+        this.router.navigate([`/${NavigationLink.SEARCH_RESULTS}`]);
+      } else {
+        this.mode = editedWordId ? AddWordMode.EDIT : AddWordMode.ADD;
+        this.setProperWordForms(word || emptyVerb);
+      }
+    });
   }
 
   private setProperWordForms(editedWord: Word): void {
@@ -89,38 +125,60 @@ export class AddWordComponent extends Deactivable implements OnInit {
       case WordType.VERB: {
         this.verbFormGroup = this.addWordFormService.createVerbForm(this.editedWord);
         this.verbWithTranslationsForm = new FormGroup<VerbWithTranslationsForm>({
-          verbDataForm: this.verbFormGroup,
-          translations: this.addWordFormService.createVerbTranslationsFormArray(this.editedWord)
+          wordDataForm: this.verbFormGroup,
+          translations: this.addWordFormService.createVerbTranslationsFormArray(this.editedWord),
         });
         break;
       }
       case WordType.NOUN:
         this.nounFormGroup = this.addWordFormService.createNounForm(this.editedWord);
         this.nounWithTranslationsForm = new FormGroup<NounWithTranslationsForm>({
-          nounDataForm: this.nounFormGroup,
-          translations: this.addWordFormService.createNounTranslationsFormArray(this.editedWord)
+          wordDataForm: this.nounFormGroup,
+          translations: this.addWordFormService.createNounTranslationsFormArray(this.editedWord),
         });
         break;
       default:
         this.otherWordFormGroup = this.addWordFormService.createOtherWordForm(this.editedWord);
         this.otherWordWithTranslationsForm = new FormGroup<OtherWordWithTranslationsForm>({
-          otherWordDataForm: this.otherWordFormGroup,
-          translations: this.addWordFormService.createOtherWordTranslationsFormArray(this.editedWord)
+          wordDataForm: this.otherWordFormGroup,
+          translations: this.addWordFormService.createOtherWordTranslationsFormArray(this.editedWord),
         });
         break;
     }
   }
 
-  private getHandledForm(): GeneralWordWithTranslationsFormType {
+  private setHandledForm(): void {
     switch (this.editedWord.wordType) {
       case WordType.VERB:
-        return this.verbWithTranslationsForm;
+        this.handledWordForm = this.verbWithTranslationsForm;
+        break;
       case WordType.NOUN:
-        return this.nounWithTranslationsForm;
+        this.handledWordForm = this.nounWithTranslationsForm;
+        break;
       default:
-        return this.otherWordWithTranslationsForm;
+        this.handledWordForm = this.otherWordWithTranslationsForm;
+        break;
     }
   }
 
-  protected readonly DoubleColorMode = DoubleColorMode;
+  public changeForms(wordType: WordType): void {
+    switch (wordType) {
+      case WordType.VERB:
+        this.setProperWordForms(emptyVerb);
+        break;
+      case WordType.NOUN:
+        this.setProperWordForms(emptyNoun);
+        break;
+      default:
+        this.setProperWordForms(emptyOtherWord);
+        break;
+    }
+
+    this.setHandledForm();
+  }
+
+  private setAllWordTypes(): void {
+    this.allWordTypes = allWordTypes;
+    this.allWordTypeMessages = allWordTypes.map((wordType: WordType) => wordType.slice(0, 1).toUpperCase() + wordType.slice(1));
+  }
 }

@@ -1,3 +1,4 @@
+@import 'styles';
 @import 'bch_dc_grid';
 
 :host {
@@ -13,6 +14,26 @@
 
     li {
       margin-bottom: 15px;
+
+      .header-container {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        h3 {
+          margin-bottom: 0;
+        }
+
+        .close-icon {
+          margin-left: 5px;
+          background-color: $color-error-red;
+          width: 20px;
+          height: 20px;
+          border-radius: 10px;
+        }
+
+        margin-bottom: 7px;
+      }
     }
   }
 }

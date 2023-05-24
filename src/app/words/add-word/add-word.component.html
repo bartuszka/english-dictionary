@@ -2,27 +2,45 @@
       [formGroup]="wordWithTranslationsForm"
       (ngSubmit)="addWord()">
 
+  <div id="word-type-select-container" class="row row-1 row-center">
+    <bch-dc-triangle-select class="col col-12 col-hide col-lg-show"
+                            [value]="editedWord.wordType"
+                            [availableValues]="allWordTypes"
+                            [buttonMessages]="allWordTypeMessages"
+                            [isDisabled]="mode === modes.EDIT"
+                            (onValueChanged)="changeForms($event)">
+    </bch-dc-triangle-select>
+  </div>
+
   <app-add-word-verb *ngIf="editedWord.wordType === wordTypes.VERB"
                      [verbForm]="verbFormGroup"
-                     formGroupName="verbDataForm"></app-add-word-verb>
+                     formGroupName="wordDataForm"></app-add-word-verb>
   <app-add-word-noun *ngIf="editedWord.wordType === wordTypes.NOUN"
                      [nounForm]="nounFormGroup"
-                     formGroupName="nounDataForm"></app-add-word-noun>
+                     formGroupName="wordDataForm"></app-add-word-noun>
   <app-add-word-other *ngIf="editedWord.wordType === wordTypes.OTHER"
                       [otherWordForm]="otherWordFormGroup"
-                      formGroupName="otherWordDataForm"></app-add-word-other>
+                      formGroupName="wordDataForm"></app-add-word-other>
 
   <app-add-word-transition *ngIf="editedWord.wordType === wordTypes.VERB"
                            [wordWithTranslationsForm]="verbWithTranslationsForm"
+                           (removeTransitionSelected)="removeTransition($event)"
                            [wordType]="wordTypes.VERB"></app-add-word-transition>
 
   <app-add-word-transition *ngIf="editedWord.wordType === wordTypes.NOUN"
                            [wordWithTranslationsForm]="nounWithTranslationsForm"
+                           (removeTransitionSelected)="removeTransition($event)"
                            [wordType]="wordTypes.NOUN"></app-add-word-transition>
 
   <app-add-word-transition *ngIf="editedWord.wordType === wordTypes.OTHER"
                            [wordWithTranslationsForm]="otherWordWithTranslationsForm"
+                           (removeTransitionSelected)="removeTransition($event)"
                            [wordType]="wordTypes.OTHER"></app-add-word-transition>
+
+  <bch-dc-icon iconName="plus"
+               iconColor="color-primary-dark"
+               [iconSize]="40"
+               (click)="addTranslation()"></bch-dc-icon>
 
   <div id="buttons-container">
     <bch-dc-button type="submit"

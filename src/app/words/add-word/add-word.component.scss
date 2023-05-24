@@ -1,10 +1,23 @@
-form {
-  overflow: hidden;
+@import 'grid_old';
 
-  #buttons-container {
-    margin-top: 30px;
-    display: flex;
-    justify-content: flex-end;
-  }
+$bottom-space: 15px;
+
+:host {
+  @include row-configuration(1);
 }
 
+form {
+  overflow: hidden;
+  padding-bottom: $bottom-space;
+
+  #buttons-container {
+    float: right;
+    margin-top: $bottom-space;
+  }
+
+  bch-dc-icon {
+    float: left;
+    margin-top: $bottom-space;
+    cursor: pointer;
+  }
+}

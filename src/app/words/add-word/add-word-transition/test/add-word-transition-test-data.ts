@@ -6,7 +6,7 @@ import { VerbTranslationFormGroup } from '../../../models/add-word-form/translat
 import { VerbType } from '../../../models/verb-type';
 
 export const verbWithTransitionsForm: GeneralWordWithTranslationsFormType = new FormGroup({
-  verbDataForm: testVerbForm,
+  wordDataForm: testVerbForm,
   translations: new FormArray<FormGroup<VerbTranslationFormGroup>>([
     new FormGroup<VerbTranslationFormGroup>({
       contextWordType: new FormControl<VerbType>(VerbType.TRANSITIVE),

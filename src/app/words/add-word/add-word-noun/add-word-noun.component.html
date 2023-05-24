@@ -1,31 +1,10 @@
 <div [formGroup]="nounForm">
-  <div id="word-type-select-container" class="row row-6 row-center">
-    <bch-dc-triangle-select class="col col-12 col-hide col-lg-show"
-                            [availableValues]="allWordTypes"
-                            [buttonMessages]="allWordTypeMessages"
-                            formControlName="wordType">
-    </bch-dc-triangle-select>
-
-    <bch-dc-triangle-select class="col col-12 col-hide col-sm-show col-lg-hide"
-                            [sizeWidth]="150"
-                            [availableValues]="allWordTypes"
-                            [buttonMessages]="allWordTypeMessages"
-                            formControlName="wordType">
-    </bch-dc-triangle-select>
-
-    <bch-dc-triangle-select class="col col-12 col-show col-sm-hide"
-                            [sizeWidth]="100"
-                            [availableValues]="allWordTypes"
-                            [buttonMessages]="allWordTypeMessages"
-                            formControlName="wordType">
-    </bch-dc-triangle-select>
-  </div>
-
   <h2>Word</h2>
 
   <div class="content row row-6">
     <bch-dc-input [attr.class]="nounColClasses"
                   [value]="nounForm.get('wordType').value"
+                  [inputDisabled]="true"
                   type="text"
                   idForLabel="name"
                   labelMessage="Type"></bch-dc-input>

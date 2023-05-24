@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ContextWordTypeTransactionTypePipe } from './pipes/context-word-type-transaction-type.pipe';
 import { NgIterablePipe } from './pipes/ngIterable.pipe';
 import {
-  BchDcButtonModule,
+  BchDcButtonModule, BchDcCircleButtonModule, BchDcIconModule,
   BchDcInputModule,
   BchDcOptionBoxModule,
   BchDcSelectButtonModule,
@@ -31,6 +31,8 @@ import { AddWordFormService } from './services/add-word-form.service';
     BchDcOptionBoxModule,
     BchDcTriangleSelectModule,
     BchDcButtonModule,
+    BchDcCircleButtonModule,
+    BchDcIconModule,
   ],
   declarations: [
     AddWordComponent,

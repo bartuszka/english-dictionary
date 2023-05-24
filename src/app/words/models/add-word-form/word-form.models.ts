@@ -44,16 +44,16 @@ export interface OtherWordForm extends WordFormBase {
 }
 
 export interface VerbWithTranslationsForm {
-  verbDataForm: FormGroup<VerbForm>;
+  wordDataForm: FormGroup<VerbForm>;
   translations: FormArray<FormGroup<VerbTranslationFormGroup>>;
 }
 
 export interface NounWithTranslationsForm {
-  nounDataForm: FormGroup<NounForm>;
+  wordDataForm: FormGroup<NounForm>;
   translations: FormArray<FormGroup<NounTranslationFormGroup>>;
 }
 
 export interface OtherWordWithTranslationsForm {
-  otherWordDataForm: FormGroup<OtherWordForm>;
+  wordDataForm: FormGroup<OtherWordForm>;
   translations: FormArray<FormGroup<WordTranslationFormGroup>>;
 }

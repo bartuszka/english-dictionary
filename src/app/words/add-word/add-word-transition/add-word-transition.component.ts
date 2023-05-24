@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { WordType } from '../../models/word-type';
 import { VerbType } from '../../models/verb-type';
@@ -19,6 +19,7 @@ import {
 export class AddWordTransitionComponent implements OnInit {
   @Input() public wordWithTranslationsForm: GeneralWordWithTranslationsFormType;
   @Input() public wordType: WordType;
+  @Output() public removeTransitionSelected: EventEmitter<number> = new EventEmitter<number>();
 
   public allTypes: VerbType[] | NounType[];
   public allTypeShortcuts: string[];
@@ -37,6 +38,10 @@ export class AddWordTransitionComponent implements OnInit {
       ? `col col-${ this.colNumber } col-xl-1`
       : `col col-${ this.colNumber } col-lg-${ this.colNumber/2 } col-xl-1`;
     this.translationRowClasses = `row row-${this.colNumber} row-center`;
+  }
+
+  public removeTransition(transitionIndex: number): void {
+    this.removeTransitionSelected.emit(transitionIndex);
   }
 
   private setAllVerbTypes(): void {

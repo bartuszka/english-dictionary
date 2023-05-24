@@ -5,7 +5,16 @@
     <li *ngFor="let translation of translationsFormArray.controls | ngIterable; let i = index"
         [formGroupName]="i">
 
-      <h3>Example {{ i + 1 }}</h3>
+      <div class="header-container">
+        <h3>Example {{ i + 1 }}</h3>
+
+        <div class="close-icon"
+             (click)="removeTransition(i)">
+          <bch-dc-icon iconName="close"
+                       iconColor="color-white"
+                       [iconSize]="20"></bch-dc-icon>
+        </div>
+      </div>
 
       <div [attr.class]="translationRowClasses">
         <bch-dc-select-button *ngIf="(translation | contextWordTypeTransactionType).controls.contextWordType"
